@@ -19,6 +19,6 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^agora/', include('agora.urls')),
+    url(r'^posts/', include('posts.urls', namespace='posts')),
     url(r'^$', views.src_index),
 ]
