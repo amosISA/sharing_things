@@ -1,9 +1,24 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from .models import Post
 
 # Create your views here.
 def index(request):
     return render(request, 'posts/index.html', {})
+
+def getAllPosts(request):
+    queryset = Post.objects.all()
+    context = {
+        'object_list': queryset
+    }
+    return render(request, 'posts/index.html', context)
+
+def getPostById(request, id=None):
+    instance = get_object_or_404(Post, id=id)
+    context = {
+        'instance': instance
+    }
+    return render(request, 'posts/post_detail.html', context)

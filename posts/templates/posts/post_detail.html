@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <h1>Details from object:</h1>
+        {% if instance %}
+            <ul>
+                <li>{{ instance.title }}</li>
+                <li>{{ instance.content }}</li>
+                <li>{{ instance.created }}</li>
+                <li>{{ instance.updated }}</li>
+            </ul>
+        {% else %}
+            <h2>El objeto no existe</h2>
+        {% endif %}
+    </body>
+</html>

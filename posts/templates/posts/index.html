@@ -1,1 +1,11 @@
 <h1 style='color:red;'>Welcome to Sharing Things Site!</h1>
+
+{% for item in object_list %}
+    <ul>
+        <li>{{ item.title }}</li>
+        <li>{{ item.content }}</li>
+        <li>{{ item.created }}</li>
+        <li>{{ item.updated }}</li>
+    </ul>
+{% endfor %}
+
