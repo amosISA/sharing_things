@@ -1,8 +1,23 @@
 <html>
     <body>
         <h1>Create post.</h1>
+
         <form method="post" action="">{% csrf_token %}
-            {{ form.as_p }}
+            {{ form.non_field_errors }}
+
+            <div class="fieldWrapper">
+                {{ form.title.errors }}
+                <label for="{{ form.title.id_for_label }}">Title:</label>
+                {{ form.title }}
+            </div>
+
+            <div class="fieldWrapper">
+                {{ form.content.errors }}
+                <label for="{{ form.content.id_for_label }}">Content:</label>
+                {{ form.content }}
+            </div>
+
+
             <input type="submit" value="Create Post" />
         </form>
     </body>

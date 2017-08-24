@@ -26,10 +26,20 @@ def getPostById(request, id=None):
     return render(request, 'posts/post_detail.html', context)
 
 def newPost(request):
-    form = PostForm()
-    if request.method == "POST":
-        print request.POST
+    form = PostForm(request.POST or None)
+    if form.is_valid():
+        # Create, but don't save the new post instance.
+        instance = form.save(commit=False)
+        # Save the new instance.
+        instance.save()
     context = {
         "form": form
     }
     return render(request, 'posts/post_create.html', context)
+
+def editPost(request, id=None):
+    instance = get_object_or_404(Post, id=id)
+
+    form = PostForm(request.POST or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
