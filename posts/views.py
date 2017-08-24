@@ -3,7 +3,9 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+
 from .models import Post
+from .forms import PostForm
 
 # Create your views here.
 def index(request):
@@ -22,3 +24,12 @@ def getPostById(request, id=None):
         'instance': instance
     }
     return render(request, 'posts/post_detail.html', context)
+
+def newPost(request):
+    form = PostForm()
+    if request.method == "POST":
+        print request.POST
+    context = {
+        "form": form
+    }
+    return render(request, 'posts/post_create.html', context)
