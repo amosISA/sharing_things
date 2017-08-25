@@ -5,5 +5,7 @@ body {
 
 .posts_wrapper {
   background-color: #fff; }
+  .posts_wrapper .post_article {
+    border: 0.1px solid #e9eaec; }
 
 /*# sourceMappingURL=base.css.map */

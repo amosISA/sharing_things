@@ -15,4 +15,11 @@ body {
 //Posts
 .posts_wrapper {
   background-color: $posts_wrapper_background_color;
+
+  .post_article {
+    border: 0.1px solid #e9eaec;
+  }
+
+  .post_left {
+  }
 }
