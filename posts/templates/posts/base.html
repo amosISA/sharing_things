@@ -1,22 +1,40 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <title>
-            {% block head %}Posts Web{% endblock %}
-        </title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="Post Web with Django and Python">
+        <meta name="author" content="Isaila Amos Lucian">
+        <meta name="generator" content="Django, PyCharm" />
+        <meta name="keywords" content="html, css, sass, python, jquery" />
+
+
         {% load staticfiles %}
-        {# Bootstrap css #}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-              integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        {% block stylesheets %}
+            <!-- Favicon -->
+            <link rel="icon" href="{% static 'posts/img/favicon/fav.png' %}" type="image/x-icon"/>
+            <!-- Bootstrap Flatly theme from https://bootswatch.com/ -->
+            <link rel="stylesheet" href="{% static 'posts/css/bootstrap.min.css' %}">
+            <link rel="stylesheet" href="{% static 'posts/css/bootstrap.min.css' %}">
+            <link rel="stylesheet" href="{% static 'posts/css/bootstrap.min.css' %}">
+        {% endblock %}
+
+        <title>
+            {% block title %}Agora{% endblock %}
+        </title>
     </head>
     <body>
         <div class="container">
-            {% block content %}
-                <h1 style='color:red;'>Welcome to Sharing Things Site!</h1>
+            <!-- Navbar -->
 
+
+            {% block content %}
                 {% for item in object_list %}
                     <ul>
                         <a href='{% url "posts:detail_post" id=item.id %}'><li>{{ item.title }}</li></a>
-                        <li>{{ item.content }}</li>
+                        <li>{{ item.content|truncatechars:120 }}</li>
                         <li>{{ item.created }}</li>
                         <li>{{ item.updated }}</li>
                     </ul>
@@ -24,9 +42,13 @@
             {% endblock %}
         </div>
 
-        {# Bootstrap scripts #}
+        <!-- Bootstrap scripts -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
                 integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
                 crossorigin="anonymous"></script>
+    
+        <!-- jQuery or JS Block -->
+        {% block js %}
+        {% endblock %}
     </body>
 </html>
