@@ -1,4 +1,18 @@
+// Variables
+$body_background_color: #ecf0f1;
+$posts_wrapper_background_color: #fff;
+
+// Body
 body {
-  min-height: 2000px;
-  padding-top: 70px;
+  padding: {
+    top: 70px;
+    bottom: 30px;
+  }
+
+  background-color: $body_background_color;
+}
+
+//Posts
+.posts_wrapper {
+  background-color: $posts_wrapper_background_color;
 }

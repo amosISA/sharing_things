@@ -31,14 +31,6 @@
 
         <div class="container">
             {% block content %}
-                <div class="jumbotron">
-                {% for item in object_list %}
-                    <a href='{% url "posts:detail_post" id=item.id %}'><li>{{ item.title }}</li></a>
-                    <p>{{ item.content|truncatechars:120 }}</p>
-                    <p>{{ item.created }}</p>
-                    <p>{{ item.updated }}</p>
-                {% endfor %}
-                </div>
             {% endblock %}
         </div>
 

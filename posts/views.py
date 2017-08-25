@@ -9,17 +9,13 @@ from django.contrib import messages
 from .models import Post
 from .forms import PostForm
 
-# Create your views here.
-def index(request):
-    return render(request, 'posts/base.html', {})
-
 # --------------- List All Posts --------------- #
-def getAllPosts(request):
+def index(request):
     queryset = Post.objects.all()
     context = {
         'object_list': queryset
     }
-    return render(request, 'posts/base.html', context)
+    return render(request, 'posts/index.html', context)
 
 # --------------- Get Post By ID --------------- #
 def getPostById(request, id=None):
