@@ -2,7 +2,7 @@
 
 {% for item in object_list %}
     <ul>
-        <a href='{% url "posts:detail" id=item.id %}'><li>{{ item.title }}</li></a>
+        <a href='{% url "posts:detail_post" id=item.id %}'><li>{{ item.title }}</li></a>
         <li>{{ item.content }}</li>
         <li>{{ item.created }}</li>
         <li>{{ item.updated }}</li>
