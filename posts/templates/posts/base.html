@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>
+            {% block head %}Posts Web{% endblock %}
+        </title>
+        {% load staticfiles %}
+        {# Bootstrap css #}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+              integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            {% block content %}
+                <h1 style='color:red;'>Welcome to Sharing Things Site!</h1>
+
+                {% for item in object_list %}
+                    <ul>
+                        <a href='{% url "posts:detail_post" id=item.id %}'><li>{{ item.title }}</li></a>
+                        <li>{{ item.content }}</li>
+                        <li>{{ item.created }}</li>
+                        <li>{{ item.updated }}</li>
+                    </ul>
+                {% endfor %}
+            {% endblock %}
+        </div>
+
+        {# Bootstrap scripts #}
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+                integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+                crossorigin="anonymous"></script>
+    </body>
+</html>
