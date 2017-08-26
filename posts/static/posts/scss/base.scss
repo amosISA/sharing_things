@@ -2,7 +2,24 @@
 $body_background_color: #ecf0f1;
 $posts_wrapper_background_color: #fff;
 
-// Body
+// Mixins
+  /* Mixin para la transicion del div de cada post */
+@mixin post-div-transition {
+    transition: opacity .5s;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+}
+
+/***** RESET CSS *****/
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+/***** BODY *****/
 body {
   padding: {
     top: 70px;
@@ -12,14 +29,44 @@ body {
   background-color: $body_background_color;
 }
 
-//Posts
+/***** POSTS *****/
 .posts_wrapper {
   background-color: $posts_wrapper_background_color;
 
   .post_article {
-    border: 0.1px solid #e9eaec;
-  }
+    display: flex;
+    border-bottom: solid 1px #eaeaea;
+    @include post-div-transition;
 
-  .post_left {
+    .post_left {
+      background-color: red;
+
+      .ag_post_avatar {
+        width: 40px;
+        border-radius: 50%;
+
+        display: inline-block;
+        position: relative;
+        height: 40px;
+
+        .ag_post_avatar_img {
+          position: absolute;
+          border-radius: 50%;
+          left: 0;
+          top: 10px;
+          width: 100%;
+          height: 100%;
+
+          background : {
+            size: cover;
+            position: 50%;
+          }
+        }
+      }
+    }
+
+    .post_right {
+      background-color: yellow;
+    }
   }
 }

@@ -1,11 +1,44 @@
+/* Mixin para la transicion del div de cada post */
+/***** RESET CSS *****/
+* {
+  margin: 0;
+  padding: 0; }
+
+/***** BODY *****/
 body {
   padding-top: 70px;
   padding-bottom: 30px;
   background-color: #ecf0f1; }
 
+/***** POSTS *****/
 .posts_wrapper {
   background-color: #fff; }
   .posts_wrapper .post_article {
-    border: 0.1px solid #e9eaec; }
+    display: flex;
+    border-bottom: solid 1px #eaeaea;
+    transition: opacity .5s;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: initial;
+    transition-delay: initial; }
+    .posts_wrapper .post_article .post_left {
+      background-color: red; }
+      .posts_wrapper .post_article .post_left .ag_post_avatar {
+        width: 40px;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        height: 40px; }
+        .posts_wrapper .post_article .post_left .ag_post_avatar .ag_post_avatar_img {
+          position: absolute;
+          border-radius: 50%;
+          left: 0;
+          top: 10px;
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-position: 50%; }
+    .posts_wrapper .post_article .post_right {
+      background-color: yellow; }
 
 /*# sourceMappingURL=base.css.map */
