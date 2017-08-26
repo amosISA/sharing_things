@@ -57,7 +57,6 @@ body {
     @include post-div-transition;
 
     .post_left {
-      background-color: red;
 
       .ag_post_avatar {
         width: 40px;
@@ -84,7 +83,6 @@ body {
     }
 
     .post_right {
-      background-color: yellow;
       display: flex;
       flex-direction: column;
       flex: {
