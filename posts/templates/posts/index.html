@@ -28,10 +28,8 @@
                             </div>
                         </div>
                         <div class="row post_body">
-                            <a class="post_link_content" href="{% url "posts:detail_post" id=item.id %}">
-                                <div class="row">
-                                    <h5 class="post_title">{{ item.title }}</h5>
-                                </div>
+                            <a class="post_link_content" href="{% url "posts:detail_post" id=item.id %}" target="_blank">
+                                <h5 class="post_title">{{ item.title }}</h5>
                                 <div class="row post_content">
                                     {{ item.content|truncatewords:50 }}
                                 </div>

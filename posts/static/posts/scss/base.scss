@@ -92,6 +92,7 @@ body {
         shrink: 1;
       }
 
+      /* Header from post */
       .post_header {
         padding-top: 5px;
         font-weight: 500;
@@ -109,6 +110,36 @@ body {
             top: 2px;
           }
           font-size: 12px;
+        }
+      }
+
+      /* Body from post */
+      .post_body {
+        .post_link_content {
+          text-decoration: none;
+
+          .row {
+            margin: {
+              left: 0; right: 0;
+            }
+          }
+
+          h5 {
+            margin: .7em 0 .4em;
+            font: {
+              size: 16px;
+              weight: bold;
+              family: inherit;
+            }
+            line-height: 1.3;
+            color: #404040;
+          }
+
+          .post_content {
+            word-break: break-word;
+            color: #666;
+            line-height: 22px;
+          }
         }
       }
     }
