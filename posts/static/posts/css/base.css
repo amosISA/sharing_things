@@ -8,7 +8,18 @@
 body {
   padding-top: 70px;
   padding-bottom: 30px;
-  background-color: #ecf0f1; }
+  background-color: #ecf0f1;
+  line-height: 20px; }
+  body .webapp-content {
+    font-style: inherit;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 100%;
+    text-rendering: optimizeLegibility; }
+    body .webapp-content a {
+      text-decoration: none;
+      cursor: pointer;
+      color: #00b5e2;
+      background-color: transparent; }
 
 /***** POSTS *****/
 .posts_wrapper {
@@ -39,6 +50,23 @@ body {
           background-size: cover;
           background-position: 50%; }
     .posts_wrapper .post_article .post_right {
-      background-color: yellow; }
+      background-color: yellow;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      flex-shrink: 1; }
+      .posts_wrapper .post_article .post_right .post_header {
+        padding-top: 5px;
+        font-weight: 500;
+        color: #666; }
+        .posts_wrapper .post_article .post_right .post_header .post_user_name {
+          font-weight: 600; }
+          .posts_wrapper .post_article .post_right .post_header .post_user_name:hover {
+            text-decoration: underline; }
+        .posts_wrapper .post_article .post_right .post_header .post_createdAt {
+          color: #798185;
+          margin-bottom: 0;
+          margin-top: 2px;
+          font-size: 12px; }
 
 /*# sourceMappingURL=base.css.map */

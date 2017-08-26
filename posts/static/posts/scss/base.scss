@@ -27,6 +27,24 @@ body {
   }
 
   background-color: $body_background_color;
+  line-height: 20px;
+
+  .webapp-content {
+    font: {
+      style: inherit;
+      family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+      size: 100%;
+    }
+
+    text-rendering: optimizeLegibility;
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      color: #00b5e2;
+      background-color: transparent;
+    }
+  }
 }
 
 /***** POSTS *****/
@@ -67,6 +85,32 @@ body {
 
     .post_right {
       background-color: yellow;
+      display: flex;
+      flex-direction: column;
+      flex: {
+        grow: 1;
+        shrink: 1;
+      }
+
+      .post_header {
+        padding-top: 5px;
+        font-weight: 500;
+        color: #666;
+
+        .post_user_name {
+          font-weight: 600;
+          &:hover { text-decoration: underline; }
+        }
+
+        .post_createdAt {
+          color: #798185;
+          margin: {
+            bottom: 0;
+            top: 2px;
+          }
+          font-size: 12px;
+        }
+      }
     }
   }
 }
