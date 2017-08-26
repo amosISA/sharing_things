@@ -86,5 +86,12 @@ body {
           word-break: break-word;
           color: #666;
           line-height: 22px; }
+        .posts_wrapper .post_article .post_right .post_body .post_link_content .post_image_div {
+          width: 60%;
+          height: 200px;
+          margin-top: 1em;
+          margin-bottom: 1em;
+          overflow: hidden;
+          display: flex; }
 
 /*# sourceMappingURL=base.css.map */
