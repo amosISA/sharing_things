@@ -8,7 +8,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">
+              {% load staticfiles %}
+              <div class="brand_logo_avatar" style="background-image: url('{% static 'posts/img/logo/agor_logo.png' %}');"></div>
+          </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

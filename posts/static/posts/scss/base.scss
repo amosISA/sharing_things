@@ -12,14 +12,14 @@ $posts_wrapper_background_color: #fff;
     transition-delay: initial;
 }
 
-/***** RESET CSS *****/
+/* RESET CSS */
 *
 {
     margin: 0;
     padding: 0;
 }
 
-/***** BODY *****/
+/* BODY */
 body {
   padding: {
     top: 70px;
@@ -47,7 +47,7 @@ body {
   }
 }
 
-/***** POSTS *****/
+/* POSTS */
 .posts_wrapper {
   background-color: $posts_wrapper_background_color;
 
@@ -151,6 +151,17 @@ body {
           }
         }
       }
+    }
+  }
+}
+
+/* Navbar Logo */
+.navbar-brand {
+  .brand_logo_avatar {
+    height: 19px;
+    width: 150px;
+    background: {
+      size: 100% 100%;
     }
   }
 }
