@@ -19,6 +19,8 @@
             <link rel="stylesheet" href="{% static 'posts/css/bootstrap.min.css' %}">
 
             <link rel="stylesheet" href="{% static 'posts/css/base.css' %}">
+            <!-- Awesome Fonts => http://fontawesome.io/examples/ -->
+            <link rel="stylesheet" href="{% static 'posts/font-awesome/css/font-awesome.min.css' %}">
         {% endblock %}
 
         <title>
@@ -29,7 +31,7 @@
         <!-- Navbar -->
         {% include 'posts/navbar.html' %}
 
-        <div class="container webapp-content">
+        <div class="container ag_webapp_content">
             {% block content %}
             {% endblock %}
         </div>

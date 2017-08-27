@@ -2,45 +2,50 @@
 
 {% block content %}
     <div class="row">
-        <div class="posts_wrapper col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+        <div class="ag_posts_wrapper col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
             {% for item in object_list %}
-                <div class="row post_article">
-                    <div class="post_left col-md-2">
+                <div class="row ag_post_article">
+                    <div class="ag_post_left col-md-2">
                         {% load staticfiles %}
                         <div class="ag_post_avatar">
                             <!-- Tiene que ser 40x40px -->
                             <img class="ag_post_avatar_img" src="{% static 'posts/img/favicon/fav.png' %}" alt="User Avatar" />
                         </div>
                     </div>
-                    <div class="post_right col-md-10">
-                        <div class="row post_header">
+                    <div class="ag_post_right col-md-10">
+                        <div class="row ag_post_header">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a class="post_user_name" href="">Amos Isaila</a>
+                                    <a class="ag_post_user_name" href="">Amos Isaila</a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="post_createdAt">
+                                    <div class="ag_post_createdAt">
                                         {{ item.created|timesince }}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row post_body">
-                            <a class="post_link_content" href="{% url "posts:detail_post" id=item.id %}" target="_blank">
-                                <h5 class="post_title">{{ item.title }}</h5>
-                                <div class="row post_content">
+                        <div class="row ag_post_body">
+                            <a class="ag_post_link_content" href="{% url "posts:detail_post" id=item.id %}" target="_blank">
+                                <h5 class="ag_post_title">{{ item.title }}</h5>
+                                <div class="row ag_post_content">
                                     {{ item.content|truncatewords:50 }}
                                 </div>
-                                <div class="row post_image_div">
+                                <div class="row ag_post_image_div">
                                     <img class="ag_post_img img-responsive" src="{% static 'posts/img/favicon/fav.png' %}" alt="Post image" />
                                 </div>
                             </a>
                         </div>
-                        <div class="row post_footer">
-                            <p>LIKES</p>
-                            <p>COMMENTS</p>
+                        <div class="row ag_post_footer">
+                            <div class="ag_post_likes">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                <div class="ag_div_likes_number">1</div>
+                            </div>
+                            <a href="" class="ag_post_comments" target="_blank">
+                                <img class="ag_posts_comment_image" src="{% static 'posts/img/icons/comment.png' %}" alt="Post comments image" />
+                            </a>
                         </div>
                     </div>
                 </div>

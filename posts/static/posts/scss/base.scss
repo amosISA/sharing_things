@@ -1,5 +1,5 @@
 // Variables
-$body_background_color: #ecf0f1;
+$body_background_color: #e9eaec;
 $posts_wrapper_background_color: #fff;
 
 // Mixins
@@ -18,25 +18,40 @@ $posts_wrapper_background_color: #fff;
     margin: 0;
     padding: 0;
 }
-
+html {
+  font: {
+    family: sans-serif;
+    size: 100%;
+  }
+}
 /* BODY */
 body {
+  background-color: $body_background_color;
+  line-height: 20px;
+  color: #333;
+
   padding: {
     top: 70px;
     bottom: 30px;
   }
 
-  background-color: $body_background_color;
-  line-height: 20px;
+  font: {
+    family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    size: 14px;
+  }
 
-  .webapp-content {
+  /* Div contentedor del contenido de la Web */
+  .ag_webapp_content {
     font: {
       style: inherit;
       family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
       size: 100%;
+      weight: 400;
     }
 
     text-rendering: optimizeLegibility;
+    vertical-align: baseline;
+    * { box-sizing: border-box; }
 
     a {
       text-decoration: none;
@@ -48,15 +63,15 @@ body {
 }
 
 /* POSTS */
-.posts_wrapper {
+.ag_posts_wrapper {
   background-color: $posts_wrapper_background_color;
 
-  .post_article {
+  .ag_post_article {
     display: flex;
     border-bottom: solid 1px #eaeaea;
     @include post-div-transition;
 
-    .post_left {
+    .ag_post_left {
 
       .ag_post_avatar {
         width: 40px;
@@ -82,7 +97,7 @@ body {
       }
     }
 
-    .post_right {
+    .ag_post_right {
       display: flex;
       flex-direction: column;
       flex: {
@@ -91,17 +106,17 @@ body {
       }
 
       /* Header from post */
-      .post_header {
+      .ag_post_header {
         padding-top: 5px;
         font-weight: 500;
         color: #666;
 
-        .post_user_name {
+        .ag_post_user_name {
           font-weight: 600;
           &:hover { text-decoration: underline; }
         }
 
-        .post_createdAt {
+        .ag_post_createdAt {
           color: #798185;
           margin: {
             bottom: 0;
@@ -112,8 +127,8 @@ body {
       }
 
       /* Body from post */
-      .post_body {
-        .post_link_content {
+      .ag_post_body {
+        .ag_post_link_content {
           text-decoration: none;
 
           .row {
@@ -122,7 +137,8 @@ body {
             }
           }
 
-          h5 {
+          /* Post Title */
+          .ag_post_title {
             margin: .7em 0 .4em;
             font: {
               size: 16px;
@@ -133,19 +149,84 @@ body {
             color: #404040;
           }
 
-          .post_content {
+          /* Post Content */
+          .ag_post_content {
             word-break: break-word;
             color: #666;
             line-height: 22px;
           }
 
-          .post_image_div {
+          /* Post Image */
+          .ag_post_image_div {
+            display: flex;
             width: 60%;
             height: 200px;
             margin: {
               top: 1em;
               bottom: 1em;
             }
+          }
+        }
+      }
+
+      /* Footer from Post */
+      .ag_post_footer {
+        margin: {
+          top: .5em;
+          bottom: 6px;
+        }
+        padding: .6em 0;
+        display: flex;
+        align-items: center;
+
+        .ag_post_likes {
+          &:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important; cursor: pointer; }
+          font-size: 14px;
+          height: 30px;
+          min-height: 0;
+          padding: 5px 12px;
+          border-radius: 100px;
+          background: #fff;
+          color: #ff6671;
+          border: 1px solid #ff6671;
+          text-shadow: none;
+          box-shadow: none;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all .1s ease-out;
+          text-decoration: none;
+          text-transform: uppercase;
+
+          .ag_div_likes_number {
+            margin-left: 4px;
+            color: #666;
+          }
+
+          .fa {
+            display: inline-block;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+          }
+        }
+
+        .ag_post_comments {
+          opacity: .8;
+          color: #999;
+          margin-left: 1.5em;
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            opacity: 1;
+            cursor: pointer;
+          }
+
+          .ag_posts_comment_image {
+            margin-right: 6px;
+            height: 20px;
           }
         }
       }
