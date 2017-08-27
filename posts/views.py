@@ -87,6 +87,9 @@ def editPost(request, slug=None):
 # --------------- Delete Post --------------- #
 def deletePost(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
+    image = instance.image
+    if image: 
+        image.delete(save=False)
     instance.delete()
     messages.success(request, "Post successfully deleted.")
     return HttpResponseRedirect(reverse('posts:index'))
