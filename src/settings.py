@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -136,3 +137,8 @@ STATICFILES_DIRS = [
 # Donde se guardan los archivos que suben los usuarios
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+
+# Change messages tags so that I can use bootstrap's alerts
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}

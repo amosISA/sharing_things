@@ -78,7 +78,7 @@ def editPost(request, slug=None):
             messages.success(request, "Post successfully saved.")
             return HttpResponseRedirect(instance.get_absolute_url())
         else:
-            messages.success(request, "Error saving the post.")
+            messages.error(request, "Error saving the post.")
 
     context = {
         "instance": instance,
