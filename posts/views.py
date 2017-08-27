@@ -30,9 +30,17 @@ def index(request):
     }
     return render(request, 'posts/index.html', context)
 
-# --------------- Get Post By ID --------------- #
+# --------------- Get Post By Id --------------- #
 def getPostById(request, id=None):
     instance = get_object_or_404(Post, id=id)
+    context = {
+        'instance': instance
+    }
+    return render(request, 'posts/post_detail.html', context)
+
+# --------------- Get Post By Slug --------------- #
+def getPostBySlug(request, slug=None):
+    instance = get_object_or_404(Post, slug=slug)
     context = {
         'instance': instance
     }
@@ -58,8 +66,8 @@ def newPost(request):
     return render(request, 'posts/post_create.html', context)
 
 # --------------- Edit Post --------------- #
-def editPost(request, id=None):
-    instance = get_object_or_404(Post, id=id)
+def editPost(request, slug=None):
+    instance = get_object_or_404(Post, slug=slug)
     form = PostForm(request.POST or None, request.FILES or None, instance=instance)
 
     if form.is_valid():
@@ -77,8 +85,8 @@ def editPost(request, id=None):
     return render(request, 'posts/post_create.html', context)
 
 # --------------- Delete Post --------------- #
-def deletePost(request, id=None):
-    instance = get_object_or_404(Post, id=id)
+def deletePost(request, slug=None):
+    instance = get_object_or_404(Post, slug=slug)
     instance.delete()
     messages.success(request, "Post successfully deleted.")
-    return HttpResponseRedirect(reverse('posts:list_posts'))
+    return HttpResponseRedirect(reverse('posts:index'))
