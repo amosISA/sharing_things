@@ -49,17 +49,18 @@ def getPostBySlug(request, slug=None):
 # --------------- Create New Post --------------- #
 def newPost(request):
     form = PostForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        # Create, but don't save the new post instance.
-        instance = form.save(commit=False)
-        # Save the new instance.
-        instance.save()
-        # Flash message
-        messages.success(request, "Post successfully created.")
-        # Redirect
-        return HttpResponseRedirect(instance.get_absolute_url())
-    else:
-        messages.error(request, "Error creating post.")
+    if request.method == "POST":
+        if form.is_valid():
+            # Create, but don't save the new post instance.
+            instance = form.save(commit=False)
+            # Save the new instance.
+            instance.save()
+            # Flash message
+            messages.success(request, "Post successfully created.")
+            # Redirect
+            return HttpResponseRedirect(instance.get_absolute_url())
+        else:
+            messages.error(request, "Error creating post.")
     context = {
         "form": form
     }
@@ -70,13 +71,14 @@ def editPost(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
     form = PostForm(request.POST or None, request.FILES or None, instance=instance)
 
-    if form.is_valid():
-        instance = form.save(commit=False)
-        instance.save()
-        messages.success(request, "Post successfully saved.")
-        return HttpResponseRedirect(instance.get_absolute_url())
-    else:
-        messages.success(request, "Error saving the post.")
+    if request.method == "POST":
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            messages.success(request, "Post successfully saved.")
+            return HttpResponseRedirect(instance.get_absolute_url())
+        else:
+            messages.success(request, "Error saving the post.")
 
     context = {
         "instance": instance,
@@ -88,7 +90,7 @@ def editPost(request, slug=None):
 def deletePost(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
     image = instance.image
-    if image: 
+    if image:
         image.delete(save=False)
     instance.delete()
     messages.success(request, "Post successfully deleted.")
