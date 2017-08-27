@@ -33,9 +33,11 @@
                                 <div class="row ag_post_content">
                                     {{ item.content|truncatewords:50 }}
                                 </div>
-                                <div class="row ag_post_image_div">
-                                    <img class="ag_post_img img-responsive" src="{% static 'posts/img/favicon/fav.png' %}" alt="Post image" />
-                                </div>
+                                {% if item.image %}
+                                    <div class="row ag_post_image_div">
+                                        <img class="ag_post_img img-responsive" src="{{ item.image.url }}" alt="Post image" />
+                                    </div>
+                                {% endif %}
                             </a>
                         </div>
                         <div class="row ag_post_footer">
@@ -50,6 +52,23 @@
                     </div>
                 </div>
             {% endfor %}
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <span class="step-links">
+                    {% if object_list.has_previous %}
+                        <a href="?page={{ object_list.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                    </span>
+
+                    {% if object_list.has_next %}
+                        <a href="?page={{ object_list.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
         </div>
     </div>
 {% endblock %}

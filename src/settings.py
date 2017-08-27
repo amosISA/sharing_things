@@ -131,4 +131,5 @@ STATICFILES_DIRS = [
 ]
 
 # Donde se guardan los archivos que suben los usuarios
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
