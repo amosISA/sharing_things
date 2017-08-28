@@ -3,12 +3,14 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.models import User
+from django.views.generic import CreateView
 
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, RegisterForm
 
 # --------------- List All Posts --------------- #
 def index(request):
@@ -26,7 +28,8 @@ def index(request):
         queryset = paginator.page(paginator.num_pages)
 
     context = {
-        'object_list': queryset
+        'object_list': queryset,
+        'user': request.user
     }
     return render(request, 'posts/index.html', context)
 
@@ -95,3 +98,10 @@ def deletePost(request, slug=None):
     instance.delete()
     messages.success(request, "Post successfully deleted.")
     return HttpResponseRedirect(reverse('posts:index'))
+
+# --------------- User Registration --------------- #
+class RegisterUser(CreateView):
+    model = User
+    template_name = "posts/users/register.html"
+    form_class = RegisterForm
+    success_url = reverse_lazy("posts:index")
