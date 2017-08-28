@@ -2,22 +2,22 @@
 {% block content %}
     <h1>Create post.</h1>
 
-    <form method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+    <form class="form-horizontal" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
         {{ form.non_field_errors }}
 
-        <div class="fieldWrapper">
+        <div class="form-group">
             {{ form.title.errors }}
             <label for="{{ form.title.id_for_label }}">Title:</label>
             {{ form.title }}
         </div>
 
-        <div class="fieldWrapper">
+        <div class="form-group">
             {{ form.content.errors }}
             <label for="{{ form.content.id_for_label }}">Content:</label>
             {{ form.content }}
         </div>
 
-        <div class="fieldWrapper">
+        <div class="form-group">
             {{ form.image.errors }}
             <label for="{{ form.image.id_for_label }}">Image:</label>
             {{ form.image }}
