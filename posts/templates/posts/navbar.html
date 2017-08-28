@@ -24,13 +24,13 @@
                             Bienvenido {{ user.get_full_name|title }}
                         </a>
                     </li>
-                    <li><a href="#">Salir</a></li>
+                    <li><a href="{% url "logout" %}">Salir</a></li>
                 {% else %}
                     <li>
-                        <a href="{% url 'posts:login' %}">Iniciar sesión</a>
+                        <a href="{% url 'login' %}">Iniciar sesión</a>
                     </li>
                     <li>
-                        <a href="{% url 'posts:register' %}">Regístrate</a>
+                        <a href="{% url 'register' %}">Regístrate</a>
                     </li>
                 {% endif %}
             </ul>

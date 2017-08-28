@@ -6,11 +6,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth.models import User
-from django.views.generic import CreateView
+
 
 from .models import Post
-from .forms import PostForm, RegisterForm
+from .forms import PostForm
 
 # --------------- List All Posts --------------- #
 def index(request):
@@ -98,10 +97,3 @@ def deletePost(request, slug=None):
     instance.delete()
     messages.success(request, "Post successfully deleted.")
     return HttpResponseRedirect(reverse('posts:index'))
-
-# --------------- User Registration --------------- #
-class RegisterUser(CreateView):
-    model = User
-    template_name = "posts/users/register.html"
-    form_class = RegisterForm
-    success_url = reverse_lazy("posts:index")

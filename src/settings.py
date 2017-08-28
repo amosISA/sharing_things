@@ -144,8 +144,9 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
-# Donde me redirecciona al hacer login
+# Donde me redirecciona al hacer login o al salir
 LOGIN_REDIRECT_URL = reverse_lazy('posts:index')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 # Configuramos el servidor de correo
 EMAIL_USE_TLS = True
