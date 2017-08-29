@@ -6,12 +6,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.views.generic import ListView
 
 from .models import Post
 from .forms import PostForm
 
-# --------------- List All Posts --------------- #
+# --------------- List All Posts - function-based view --------------- #
 def index(request):
     queryset_list = Post.objects.all() #.order_by("-created")
     paginator = Paginator(queryset_list, 3)  # Show 25 posts per page
@@ -31,6 +31,34 @@ def index(request):
         'user': request.user
     }
     return render(request, 'posts/index.html', context)
+
+# --------------- List All Posts - class-based view --------------- #
+class PostsList(ListView):
+    model = Post
+    context_object_name = 'object_list'
+    template_name = 'posts/index.html'
+
+    def get(self, request, *args, **kwargs):
+
+        queryset_list = Post.objects.all()  # .order_by("-created")
+        paginator = Paginator(queryset_list, 3)  # Show 25 posts per page
+        queryset = self.request.GET.get('page')
+
+        try:
+            queryset = paginator.page(queryset)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            queryset = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            queryset = paginator.page(paginator.num_pages)
+
+        context = {
+            'object_list': queryset,
+            'user': request.user
+        }
+
+        return context
 
 # --------------- Get Post By Id --------------- #
 def getPostById(request, id=None):
