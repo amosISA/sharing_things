@@ -4,9 +4,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.db.models.signals import pre_save
-from django.core.files.storage import FileSystemStorage
 
-from django.utils.text import slugify
+from .utils import unique_slug_generator
 
 # Create your models here.
 def upload_location(instance, filename):
@@ -51,6 +50,8 @@ class Post(models.Model):
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
     # Lo q slugify hace es si el titulo es: coche item 1
     # Lo devuelve como (con los guiones): tesla-item-1
-    instance.slug = slugify(instance.title)
+    #instance.slug = slugify(instance.title)
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
 
 pre_save.connect(pre_save_post_receiver, sender=Post)
