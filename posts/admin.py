@@ -8,7 +8,7 @@ from django.contrib import admin
 from .models import Post
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'updated', 'created')
+    list_display = ('title', 'updated', 'created', 'user')
     search_fields = ('title', 'content')
     list_filter = ('updated', 'created')
     ordering = ('title',)

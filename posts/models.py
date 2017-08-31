@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.db.models.signals import pre_save
@@ -8,12 +9,15 @@ from django.db.models.signals import pre_save
 from .utils import unique_slug_generator
 from .validators import validate_title
 
+User = settings.AUTH_USER_MODEL
+
 # Create your models here.
 def upload_location(instance, filename):
     first_word = instance.title.split(' ', 1)[0]
     return "posts/%s_%s" % (first_word, filename)
 
 class Post(models.Model):
+    user = models.ForeignKey(User)
     title = models.CharField(max_length=120, validators=[validate_title])
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to=upload_location,
