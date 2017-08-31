@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.db.models.signals import pre_save
 
 from .utils import unique_slug_generator
+from .validators import validate_title
 
 # Create your models here.
 def upload_location(instance, filename):
@@ -13,7 +14,7 @@ def upload_location(instance, filename):
     return "posts/%s_%s" % (first_word, filename)
 
 class Post(models.Model):
-    title = models.CharField(max_length=120)
+    title = models.CharField(max_length=120, validators=[validate_title])
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to=upload_location,
                               null=True,
