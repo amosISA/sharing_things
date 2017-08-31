@@ -58,23 +58,27 @@ def getPostBySlug(request, slug=None):
 
 # --------------- Create New Post --------------- #
 def newPost(request):
-    form = PostForm(request.POST or None, request.FILES or None)
-    if request.method == "POST":
-        if form.is_valid():
-            # Create, but don't save the new post instance.
-            instance = form.save(commit=False)
-            # Save the new instance.
-            instance.save()
-            # Flash message
-            messages.success(request, "Post successfully created.")
-            # Redirect
-            return HttpResponseRedirect(instance.get_absolute_url())
-        else:
-            messages.error(request, "Error creating post.")
-    context = {
-        "form": form
-    }
-    return render(request, 'posts/post_create.html', context)
+    if request.user.is_authenticated():
+        form = PostForm(request.POST or None, request.FILES or None)
+        if request.method == "POST":
+            if form.is_valid():
+                # Create, but don't save the new post instance.
+                instance = form.save(commit=False)
+                instance.user = request.user
+                # Save the new instance.
+                instance.save()
+                # Flash message
+                messages.success(request, "Post successfully created.")
+                # Redirect
+                return HttpResponseRedirect(instance.get_absolute_url())
+            else:
+                messages.error(request, "Error creating post.")
+        context = {
+            "form": form
+        }
+        return render(request, 'posts/post_create.html', context)
+    else:
+        return HttpResponseRedirect(reverse('login'))
 
 # --------------- Edit Post --------------- #
 def editPost(request, slug=None):

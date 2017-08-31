@@ -11,6 +11,6 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'updated', 'created', 'user')
     search_fields = ('title', 'content')
     list_filter = ('updated', 'created')
-    ordering = ('title',)
+    ordering = ('-created',)
 
 admin.site.register(Post, PostAdmin)
