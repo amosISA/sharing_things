@@ -18,3 +18,9 @@ class RegisterForm(UserCreationForm):
             "last_name": "Apellidos",
             "email": "E-mail"
         }
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if ".edu" in email:
+            raise forms.ValidationError("NADA DE NADA")
+        return email

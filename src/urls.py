@@ -25,7 +25,8 @@ urlpatterns = [
     url(r'^posts/', include('posts.urls', namespace='posts')),
     url(r'^$', views.src_index),
 
-    url(r'^accounts/login/', login, {'template_name': 'login.html'}, name='login'),
+    #url(r'^accounts/login/', login, {'template_name': 'login.html'}, name='login'),
+    url(r'^accounts/login/', views.custom_login, name='login'),
     url(r'^register/$', views.RegisterUser.as_view(), name="register"),
     url(r'^logout/', logout_then_login, name='logout'),
 
