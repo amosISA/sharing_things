@@ -12,8 +12,8 @@ urlpatterns = [
 
     # --- slug urls ---
     # --- function-based views ---
-    url(r'^new/$', views.newPost, name='new_post'),
-    #url(r'^new/$', views.PostCreateView.as_view(), name='new_post'),
+    #url(r'^new/$', views.newPost, name='new_post'),
+    url(r'^new/$', views.PostCreateView.as_view(), name='new_post'),
 
     url(r'^(?P<slug>[\w-]+)/$', views.getPostBySlug, name='detail_post'),
 

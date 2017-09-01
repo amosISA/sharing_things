@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -57,6 +60,7 @@ def getPostBySlug(request, slug=None):
     return render(request, 'posts/post_detail.html', context)
 
 # --------------- Create New Post --------------- #
+@login_required()
 def newPost(request):
     if request.user.is_authenticated():
         form = PostForm(request.POST or None, request.FILES or None)
@@ -81,6 +85,7 @@ def newPost(request):
         return HttpResponseRedirect(reverse('login'))
 
 # --------------- Edit Post --------------- #
+@login_required()
 def editPost(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
     form = PostForm(request.POST or None, request.FILES or None, instance=instance)
@@ -101,6 +106,7 @@ def editPost(request, slug=None):
     return render(request, 'posts/post_create.html', context)
 
 # --------------- Delete Post --------------- #
+@login_required()
 def deletePost(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
     image = instance.image
@@ -151,11 +157,16 @@ class PostDetailView(DetailView):
         return context
 
 # --------------- Create New Post --------------- #
-class PostCreateView(CreateView):
-    model = Post
+class PostCreateView(LoginRequiredMixin, CreateView):
+    form_class = PostForm
     template_name = 'posts/post_create.html'
-    fields = ['title', 'content', 'image']
     success_url = reverse_lazy('posts:index')
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        #instance.save() # por defecto el form_valid ya hace el save asi q no hace falta
+        return super(PostCreateView, self).form_valid(form)
 
 # --------------- Edit Post --------------- #
 class PostUpdateView(UpdateView):
