@@ -11,3 +11,4 @@
 	6. Para la vista individual de cada post puedo basarme en este ejemplo: 
 		http://blog.teamtreehouse.com/chris-dabatos-self-taught-developer?utm_source=twitter-organic&utm_medium=social&utm_campaign=blog-post&utm_content=chris-dabatos-self-taught-developer&cid=4732
 	7. Añadir a un lado (izquierdo o derecho) frases del dia q sea una lista y por random q saque una frase de francis underwood 
+	8. Añadir de fonts awesome la ruleta de cargando a los comentarios de los posts o incluso a los posts mismos una vez se acceda a /posts/ 
