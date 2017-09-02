@@ -28,7 +28,8 @@
                             </div>
                         </div>
                         <div class="row ag_post_body">
-                            <a class="ag_post_link_content" href="{% url "posts:detail_post" slug=item.slug %}" target="_blank">
+                            {# href="{% url "posts:detail_post" slug=item.slug %}" #}
+                            <a class="ag_post_link_content" href="{{ item.get_absolute_url }}" target="_blank">
                                 <h5 class="ag_post_title">{{ item.title }}</h5>
                                 <div class="row ag_post_content">
                                     {{ item.content|truncatewords:50 }}
