@@ -21,13 +21,15 @@
             <link rel="stylesheet" href="{% static 'posts/css/base.css' %}">
             <!-- Awesome Fonts => http://fontawesome.io/examples/ -->
             <link rel="stylesheet" href="{% static 'posts/font-awesome/css/font-awesome.min.css' %}">
+            <!-- Progressive image -->
+            <link rel="stylesheet" href="{% static 'posts/css/progressive-image.min.css' %}">
         {% endblock %}
 
         <title>
             {% block title %}Agora{% endblock %}
         </title>
 
-        <!--Tinymce Text-Editor (Must be in Head Tag) -->
+        <!--Tinymce Text-Editor -->
         <script src="{% static 'posts/js/tinymce/tinymce.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'posts/js/tinymce/custom.js' %}" ></script>
     </head>
@@ -53,6 +55,8 @@
                 crossorigin="anonymous"></script>
         <script src="{% static 'posts/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'posts/js/nav_scroll_up_down.js' %}"></script>
+        <!-- Progressive image -->
+        <script src="{% static 'posts/js/progressive-image.min.js' %}"></script>
 
         <!-- jQuery or JS Block -->
         {% block js %}
