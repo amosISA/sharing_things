@@ -159,4 +159,29 @@ body {
   width: 150px;
   background-size: 100% 100%; }
 
+/* Up down navbar */
+.navbar {
+  transition: top 0.2s ease-in-out;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
+
+.nav-up {
+  top: -60px; }
+
+/* Pagination Styles */
+.ag_pagination {
+  display: inline-block;
+  padding: 0 15px; }
+  .ag_pagination .step-links {
+    display: inline-block; }
+    .ag_pagination .step-links .current, .ag_pagination .step-links a {
+      outline: none;
+      display: inline-flex;
+      border-radius: 2px;
+      border: 1px solid transparent;
+      padding: .5em .85em;
+      margin: 0 .15em;
+      border-color: #e5e5e5;
+      background: #fff;
+      text-decoration: none; }
+
 /*# sourceMappingURL=base.css.map */
