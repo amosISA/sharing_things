@@ -276,3 +276,44 @@ body {
     }
   }
 }
+
+/* Post details */
+.ag_post_article_detail {
+  background-color: #fff;
+  font-family: 'Open Sans',sans-serif;
+  letter-spacing: .1px;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  .ag_article_header {
+    margin: {
+      bottom: .5em;
+      top: 2em;
+    }
+
+    h1 {
+      margin-top: .2em;
+      color: #333;
+      font-weight: bold;
+      font-size: 50px;
+    }
+
+    .ag_article_header_pub_date {
+      margin-bottom: .4em;
+      align-items: center;
+      justify-content: space-between;
+
+      .ag_article_timestamps {
+        .ag_pub_date {
+          color: #80888a;
+          margin-right: 1em;
+        }
+
+        .ag_upadted_at {
+          color: rgba(128,136,138,0.6);
+        }
+      }
+    }
+  }
+}

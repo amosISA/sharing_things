@@ -5,6 +5,7 @@ from django.conf import settings
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.db.models.signals import pre_save
+from tinymce.models import HTMLField
 
 from .utils import unique_slug_generator
 from .validators import validate_title
@@ -30,7 +31,7 @@ class Post(models.Model):
                               width_field="width_field")
     height_field = models.IntegerField(default=0, blank=True, null=True)
     width_field = models.IntegerField(default=0, blank=True, null=True)
-    content = models.TextField()
+    content = HTMLField()
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     created = models.DateTimeField(auto_now=False, auto_now_add=True)
 

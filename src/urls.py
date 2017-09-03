@@ -23,6 +23,7 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^posts/', include('posts.urls', namespace='posts')),
+    url(r'^tinymce/', include('tinymce.urls')),
     url(r'^$', views.src_index),
 
     #url(r'^accounts/login/', login, {'template_name': 'login.html'}, name='login'),

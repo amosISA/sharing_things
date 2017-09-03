@@ -32,7 +32,7 @@
                             <a class="ag_post_link_content" href="{{ item.get_absolute_url }}" target="_blank">
                                 <h5 class="ag_post_title">{{ item.title }}</h5>
                                 <div class="row ag_post_content">
-                                    {{ item.content|truncatewords:50 }}
+                                    {{ item.content|truncatewords:50|safe }}
                                 </div>
                                 {% if item.image %}
                                     <div class="row ag_post_image_div">
