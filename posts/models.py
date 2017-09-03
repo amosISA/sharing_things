@@ -16,6 +16,9 @@ def upload_location(instance, filename):
     first_word = instance.title.split(' ', 1)[0]
     return "posts/%s_%s" % (first_word, filename)
 
+#--------------------------------------------------------------------#
+##------------------------- POSTS ---------------------##
+#--------------------------------------------------------------------#
 class Post(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=120, validators=[validate_title])
@@ -50,6 +53,21 @@ class Post(models.Model):
                 this.image.delete(save=False)
         except: pass # When new photo then we do nothing, normal case
         super(Post, self).save(*args, **kwargs)
+
+#--------------------------------------------------------------------#
+##------------------------- COMMENTS ---------------------##
+#--------------------------------------------------------------------#
+class Comment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    post = models.ForeignKey(Post)
+    content = models.TextField(help_text='La longitud máxima del comentario es de 300 caracteres', max_length=300,
+                               blank=False, null=False)
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    created = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    class Meta:
+        ordering = ['-updated', '-created']
+
 
 # Function that do something before the model is saved => save()
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
