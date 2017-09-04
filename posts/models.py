@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from django.db import models
+from django.db.models import Q
 from django.core.urlresolvers import reverse
 from django.db.models.signals import pre_save
 from tinymce.models import HTMLField
@@ -16,6 +17,26 @@ User = settings.AUTH_USER_MODEL
 def upload_location(instance, filename):
     first_word = instance.title.split(' ', 1)[0]
     return "posts/%s_%s" % (first_word, filename)
+
+# Methods for the search form
+class PostQuerySet(models.query.QuerySet):
+    def search(self, query):
+        if query:
+            query = query.strip()
+            return self.filter(
+                Q(title__icontains=query)|
+                Q(content__icontains=query)|
+                Q(title__iexact=query)|
+                Q(content__iexact=query)
+            )
+        return self
+
+class PostManager(models.Manager):
+    def get_queryset(self):
+        return PostQuerySet(self.model, using=self._db)
+
+    def search(self, query):
+        return self.get_queryset().search(query)
 
 #--------------------------------------------------------------------#
 ##------------------------- POSTS ---------------------##
@@ -34,6 +55,8 @@ class Post(models.Model):
     content = HTMLField()
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     created = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    objects = PostManager()
 
     class Meta:
         ordering = ["-created", "-updated"]

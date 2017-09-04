@@ -16,4 +16,5 @@
 	9. Añadir campo avatar a los usuarios para q puedan subir su foto de perfil 
 	10. Añadir nueva app comentarios 
 	11. Añadir nueva app likes 
-	12. Añadir respuestas a esos comentarios 
+	12. Añadir respuestas a esos comentarios
+	13. Añadir buscador general en la navegacion
