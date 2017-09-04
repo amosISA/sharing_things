@@ -22,6 +22,7 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^profile/', include('profiles.urls', namespace='profiles')),
     url(r'^posts/', include('posts.urls', namespace='posts')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^$', views.src_index),

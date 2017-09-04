@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'posts',
     'tinymce',
+    'profiles',
     'django.contrib.staticfiles',
 ]
 
@@ -60,7 +61,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 os.path.join(BASE_DIR, 'posts/templates'), ],
+                 os.path.join(BASE_DIR, 'posts/templates'),
+                 os.path.join(BASE_DIR, 'profiles/templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
