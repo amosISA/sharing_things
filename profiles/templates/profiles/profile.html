@@ -10,7 +10,11 @@
             </form>
 
             <h1>{{ user.username }}</h1>
-            <p>{% include "profiles/snippet/follow_form.html" with username=user.username %}</p>
+            {{ request.user }} esta siguiendo a => {{ request.user.is_following.all }}
+            {% if user.profile in request.user.is_following.all %}
+                Lo estoy siguiendo
+            {% endif %}
+            <p>{% include "profiles/snippet/follow_form.html" with username=user.username is_following=is_following %}</p>
             <h3>Información del usuario:</h3>
 
             <!-- Otra forma de comprobarlo => {% if user.post_set.all.exists %}-->

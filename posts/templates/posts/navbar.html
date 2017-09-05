@@ -18,10 +18,10 @@
                 <li {% if request.path == '/posts/' %}class="active"{% endif %}><a href="{% url 'posts:index' %}">Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     <li>
                         <a>
-                            Bienvenido {{ user.get_full_name|title }}
+                            Bienvenido {{ request.user.get_full_name|title }}
                         </a>
                     </li>
                     <li><a href="{% url "logout" %}">Salir</a></li>
