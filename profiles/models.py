@@ -11,7 +11,7 @@ User = settings.AUTH_USER_MODEL
 class Profile(models.Model):
     user = models.OneToOneField(User)
     followers = models.ManyToManyField(User, related_name='is_following', blank=True)
-    following = models.ManyToManyField(User, related_name='following', blank=True)
+    #following = models.ManyToManyField(User, related_name='following', blank=True)
     activated = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -22,5 +22,10 @@ class Profile(models.Model):
 def post_save_user_receiver(sender, instance, created, *args, **kwargs):
     if created:
         profile, is_created = Profile.objects.get_or_create(user=instance)
+        # Hago esto para q cualquier usuario nueva q se registre, yo lo siga de
+        # manera automatica
+        default_user_profile = Profile.objects.get_or_create(user__id=1)[0] # user__username='amos'
+        default_user_profile.followers.add(instance)
+
 
 post_save.connect(post_save_user_receiver, sender=User)

@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import login, logout_then_login, password_reset, password_reset_done, password_reset_confirm, password_reset_complete
 from . import views
+from profiles.views import ProfileFollowToggle
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,6 +32,8 @@ urlpatterns = [
     url(r'^accounts/login/', views.custom_login, name='login'),
     url(r'^register/$', views.RegisterUser.as_view(), name="register"),
     url(r'^logout/', logout_then_login, name='logout'),
+
+    url(r'^profile-follow/$', ProfileFollowToggle.as_view(), name='follow'),
 
     url(r'^reset/password_reset', password_reset, {"template_name": "password_reset_form.html",
         "email_template_name": "password_reset_email.html"}, name="password_reset"),

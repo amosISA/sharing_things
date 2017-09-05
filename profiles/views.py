@@ -2,14 +2,21 @@
 from __future__ import unicode_literals
 
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import DetailView
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import DetailView, View
 
 from posts.models import Post
 
 # Create your views here.
 User = get_user_model()
+
+# Button for following users
+class ProfileFollowToggle(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        print(request.POST)
+        return redirect("/profile/amos/")
 
 class ProfileDetailView(DetailView):
     queryset = User.objects.all().filter(is_active=True)
