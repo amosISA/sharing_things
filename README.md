@@ -18,3 +18,5 @@
 	11. Añadir nueva app likes 
 	12. Añadir respuestas a esos comentarios
 	13. Añadir buscador general en la navegacion
+	14. Añadir ajax al hacer click con el boton follow
+	15. Q no se pueda un usuario seguir a si mismo
