@@ -30,7 +30,7 @@ urlpatterns = [
 
     #url(r'^accounts/login/', login, {'template_name': 'login.html'}, name='login'),
     url(r'^accounts/login/', views.custom_login, name='login'),
-    url(r'^register/$', views.RegisterUser.as_view(), name="register"),
+    url(r'^register/$', views.RegisterView.as_view(), name="register"),
     url(r'^logout/', logout_then_login, name='logout'),
 
     url(r'^profile-follow/$', ProfileFollowToggle.as_view(), name='follow'),

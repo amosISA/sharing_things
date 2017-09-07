@@ -1,8 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
 
-from django.contrib.auth.models import User
-
 from django.views.generic import CreateView
 from django.contrib.auth.views import login
 
@@ -12,11 +10,16 @@ def src_index(request):
     return HttpResponseRedirect(reverse('posts:index'))
 
 # --------------- User Registration --------------- #
-class RegisterUser(CreateView):
-    model = User
-    template_name = "register.html"
+class RegisterView(CreateView):
     form_class = RegisterForm
+    template_name = "register.html"
     success_url = reverse_lazy("posts:index")
+
+    # if user is logged, redirect him
+    def dispatch(self, *args, **kwargs):
+        if self.request.user.is_authenticated():
+            return HttpResponseRedirect(reverse('posts:index'))
+        return super(RegisterView, self).dispatch(*args, **kwargs)
 
 # --------------- Login --------------- #
 def custom_login(request):
