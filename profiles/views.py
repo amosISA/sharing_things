@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import DetailView, View
 
@@ -20,6 +20,7 @@ class ProfileFollowToggle(LoginRequiredMixin, View):
         profile_, is_following = Profile.objects.toggle_follow(request.user, username_to_toggle)
         return redirect("/profile/{}/".format(profile_.user.username))
 
+# User Profile
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     queryset = User.objects.all().filter(is_active=True)
     template_name = 'profiles/profile.html'
@@ -47,3 +48,20 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         if qs.exists():
             context['settings'] = qs
         return context
+
+# User activation email
+def activate_user_view(request, code=None, *args, **kwargs):
+    if code:
+        qs = Profile.objects.filter(activation_key=code)
+        if qs.exists() and qs.count() == 1:
+            profile = qs.first()
+            if not profile.activated:
+                user_ = profile.user
+                user_.is_active = True
+                user_.save()
+                profile.activated = True
+                profile.activation_key = None
+                profile.save()
+                return redirect("login")
+    # invalid code
+    return redirect("login")

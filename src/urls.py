@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.contrib.auth.views import logout_then_login, password_reset, password_reset_done, password_reset_confirm, password_reset_complete
 
 from . import views
-from profiles.views import ProfileFollowToggle
+from profiles.views import ProfileFollowToggle, activate_user_view
 
 from django.contrib.auth.views import LoginView
 
@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^accounts/login/', LoginView.as_view(redirect_authenticated_user=True,
                                                template_name='login.html'), name='login'),
     url(r'^register/$', views.RegisterView.as_view(), name="register"),
+    url(r'^activate/(?P<code>[a-z0-9].*)/$', activate_user_view, name='activate'),
     url(r'^logout/', logout_then_login, name='logout'),
 
     url(r'^profile-follow/$', ProfileFollowToggle.as_view(), name='follow'),

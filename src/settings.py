@@ -158,3 +158,10 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = 'pruebaserver001@gmail.com'
 EMAIL_HOST_PASSWORD = 'server00'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'pruebaserver001@gmail.com'
+
+# To receive server errors to my inbox
+ADMINS = (
+    ('Amos', 'pruebaserver001@gmail.com'),
+)
+MANAGERS = ADMINS
