@@ -17,9 +17,12 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.views import login, logout_then_login, password_reset, password_reset_done, password_reset_confirm, password_reset_complete
+from django.contrib.auth.views import logout_then_login, password_reset, password_reset_done, password_reset_confirm, password_reset_complete
+
 from . import views
 from profiles.views import ProfileFollowToggle
+
+from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,7 +32,8 @@ urlpatterns = [
     url(r'^$', views.src_index),
 
     #url(r'^accounts/login/', login, {'template_name': 'login.html'}, name='login'),
-    url(r'^accounts/login/', views.custom_login, name='login'),
+    url(r'^accounts/login/', LoginView.as_view(redirect_authenticated_user=True,
+                                               template_name='login.html'), name='login'),
     url(r'^register/$', views.RegisterView.as_view(), name="register"),
     url(r'^logout/', logout_then_login, name='logout'),
 

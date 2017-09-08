@@ -20,3 +20,5 @@
 	13. Añadir buscador general en la navegacion
 	14. Añadir ajax al hacer click con el boton follow
 	15. Q no se pueda un usuario seguir a si mismo
+	16. Cuando se registren q les lleve a una ventana intermedia q diga gracias por registrarte ahora proceda a activar su cuenta
+	y luego a subir su primer post!!

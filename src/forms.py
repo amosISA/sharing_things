@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
 
 # class RegisterForm(UserCreationForm):
@@ -47,6 +48,20 @@ class RegisterForm(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'first_name', 'last_name',)
 
+    def clean_email(self):
+        # Get the email
+        email = self.cleaned_data.get('email')
+
+        # Check to see if any users already exist with this email as a username.
+        try:
+            match = User.objects.get(email=email)
+        except User.DoesNotExist:
+            # Unable to find a user, this is fine
+            return email
+
+        # A user was found with this as a username, raise an error.
+        raise forms.ValidationError("El email {} ya está en uso.".format(email))
+
     def clean_password2(self):
         # Check that the two password entries match
         password1 = self.cleaned_data.get("password1")
@@ -64,4 +79,31 @@ class RegisterForm(forms.ModelForm):
 
         if commit:
             user.save()
+            user.profile.send_activation_email()
         return user
+
+class LoginForm(forms.Form):
+    query = forms.CharField(label='Username / Email')
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+
+    def clean(self, *args, **kwargs):
+        query = self.cleaned_data.get("query")
+        password = self.cleaned_data.get("password")
+        user_qs_final = User.objects.filter(
+                Q(username__iexact=query)|
+                Q(email__iexact=query)
+            ).distinct()
+
+        if not user_qs_final.exists() and user_qs_final.count() != 1:
+            raise forms.ValidationError("Invalid credentials -- user not exist")
+        user_obj = user_qs_final.first()
+
+        if not user_obj.check_password(password):
+                # log auth tries
+                raise forms.ValidationError("Invalid credentials -- password invalid")
+
+        if not user_obj.is_active:
+                    raise forms.ValidationError("Inactive user. Please verify your email address.")
+
+        self.cleaned_data["user_obj"] = user_obj
+        return super(LoginForm, self).clean(*args, **kwargs)
