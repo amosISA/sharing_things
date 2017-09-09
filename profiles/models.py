@@ -11,6 +11,10 @@ from .utils import code_generator
 User = settings.AUTH_USER_MODEL
 
 # Create your models here.
+def upload_location(instance, filename):
+    username = instance.user.username
+    return "avatar/%s_%s" % (username, filename)
+
 class ProfileManager(models.Manager):
     def toggle_follow(self, request_user, username_to_toggle):
         profile_ = Profile.objects.get(user__username__iexact=username_to_toggle)
@@ -31,6 +35,13 @@ class Profile(models.Model):
     activated = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    avatar = models.ImageField(upload_to=upload_location,
+                              null=True,
+                              blank=True,
+                              height_field="height_field",
+                              width_field="width_field")
+    height_field = models.IntegerField(default=0, blank=True, null=True)
+    width_field = models.IntegerField(default=0, blank=True, null=True)
 
     objects = ProfileManager()
 

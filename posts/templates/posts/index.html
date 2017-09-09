@@ -9,7 +9,11 @@
                         {% load staticfiles %}
                         <div class="ag_post_avatar">
                             <!-- Tiene que ser 40x40px -->
-                            <img class="ag_post_avatar_img" src="{% static 'posts/img/favicon/fav.png' %}" alt="User Avatar" />
+                            {% if item.user.profile.avatar %}
+                                <img class="ag_post_avatar_img" src="{{ item.user.profile.avatar.url }}" alt="User Avatar" />
+                            {% else %}
+                                <img class="ag_post_avatar_img" src="{% static 'posts/img/favicon/fav.png' %}" alt="User Avatar" />
+                            {% endif %}
                         </div>
                     </div>
                     <div class="ag_post_right col-md-10">
