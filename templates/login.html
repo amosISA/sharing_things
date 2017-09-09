@@ -1,47 +1,52 @@
 {% extends "posts/base.html" %}
 
 {% block content %}
-    <h1>LOGIN</h1>
 
-    {% if form.errors %}
-        {{ form.errors }}
-    {% endif %}
+    <div class="ag_auth_page_login">
+        <form class="ag_form_auth_login" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
 
-    {% if next %}
-        {% if user.is_authenticated %}
-            <p>Your account doesn't have access to this page. To proceed,
-            please login with an account that has access.</p>
-        {% else %}
-            <p>Para ver esta página debe registrarse.</p>
-        {% endif %}
-    {% endif %}
+            {% if form.errors %}
+                <div class="ag_form_login_message_error">
+                    Compruebe que su nombre y contraseña sean correctas o, puede que su
+                    cuenta no esté activada.
+                </div>
+            {% endif %}
 
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-         <div class="row">
-             <div class="col-md-6 col-md-offset-3">
-                 <div class="form-group">
-                    <label for="username">Nombre de usuario:</label>
-                    <input class="form-control" type="text" name="username">
-                 </div>
+            {% if next %}
+                <div class="ag_form_login_message_error">
+                    {% if user.is_authenticated %}
+                        Your account doesn't have access to this page. To proceed,
+                        please login with an account that has access.
+                    {% else %}
+                        Para ver esta página debe registrarse.
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div class="ag_form_block_input">
+                <div class="ag_form_inner_wrapper">
+                    <input class="ag_input_form_login" type="text" name="username" placeholder="Nombre" min="0" autofocus>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="form-group">
-                    <label for="username">Contraseña:</label>
-                    <input class="form-control" type="password" name="password">
-               </div>
+            <div class="ag_form_block_input">
+                <div class="ag_form_inner_wrapper">
+                    <input class="ag_input_form_login" type="password" name="password" placeholder="Contraseña" min="0">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="form-group">
-                    <a href="{% url 'password_reset' %}">Olvidé mi contraseña</a>
-                    <input class="btn btn-primary" type="submit" value="Ingresar">
-                    <input type="hidden" name="next" value="{{ next }}" />
-               </div>
+
+            <div class="ag_login_form_options">
+                <a href="{% url 'password_reset' %}">Olvidé mi contraseña</a>
             </div>
-        </div>
-    </form>
+
+            <button class="ag_login_form_submit_button" type="submit">Log in</button>
+            <input type="hidden" name="next" value="{{ next }}" />
+
+            <div class="ag_auth_page_singup_hint">
+                ¿No dispone de una cuenta?
+                <a href="{% url 'register' %}" class="ag_auth_page_signup_button">Crea una cuenta</a>
+            </div>
+        </form>
+    </div>
+
 {% endblock %}

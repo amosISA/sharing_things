@@ -15,22 +15,19 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li {% if request.path == '/posts/' %}class="active"{% endif %}><a href="{% url 'posts:index' %}">Home</a></li>
+                <li {% if request.path == '/posts/' %}class="active"{% endif %}><a href="{% url 'posts:index' %}">Inicio</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if request.user.is_authenticated %}
                     <li>
-                        <a>
-                            Bienvenido {{ request.user.get_full_name|title }}
+                        <a href="{% url "posts:index" %}">
+                           {{ user.get_full_name|title }}
                         </a>
                     </li>
                     <li><a href="{% url "logout" %}">Salir</a></li>
                 {% else %}
                     <li>
-                        <a href="{% url 'login' %}">Iniciar sesión</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'register' %}">Regístrate</a>
+                        <a href="{% url 'login' %}">Comparte tus ideas</a>
                     </li>
                 {% endif %}
             </ul>
