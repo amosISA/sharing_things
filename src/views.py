@@ -6,6 +6,7 @@ from django.views.generic import CreateView
 from django.contrib.auth.views import login
 
 from .forms import RegisterForm, LoginForm
+from django.contrib.auth.views import login
 
 def src_index(request):
     return HttpResponseRedirect(reverse('posts:index'))
@@ -30,9 +31,8 @@ class RegisterView(CreateView):
 #         return login(request, template_name='login.html')
 
 def custom_login(request, *args, **kwargs):
-    form = LoginForm(request.POST or None)
-    if form.is_valid():
-        user_obj = form.cleaned_data.get('user_obj')
-        login(request, user_obj)
-        return HttpResponseRedirect("posts:index")
-    return render(request, "login.html", {"form": form})
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('posts:index'))
+    else:
+        return login(request, template_name='login.html')
+    return login(request, *args, **kwargs)

@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="ag_auth_page_login">
-        <form class="ag_form_auth_login" method="post" action="{% url 'login' %}">
+        <form name="ag_login_form" class="ag_form_auth_login" method="post" action="{% url 'login' %}">
             {% csrf_token %}
 
             {% if form.errors %}
@@ -25,13 +25,13 @@
             {% endif %}
 
             <div class="ag_form_block_input">
-                <div class="ag_form_inner_wrapper">
-                    <input class="ag_input_form_login" type="text" name="username" placeholder="Nombre" min="0" autofocus>
+                <div class="ag_form_inner_wrapper wrapper_name_input">
+                    <input class="ag_input_form_login ag_input_username_login" type="text" name="username" placeholder="Nombre" min="0" autofocus>
                 </div>
             </div>
             <div class="ag_form_block_input">
-                <div class="ag_form_inner_wrapper">
-                    <input class="ag_input_form_login" type="password" name="password" placeholder="Contraseña" min="0">
+                <div class="ag_form_inner_wrapper wrapper_password_input">
+                    <input class="ag_input_form_login ag_input_password_login" type="password" name="password" placeholder="Contraseña" min="0">
                 </div>
             </div>
 
@@ -49,4 +49,9 @@
         </form>
     </div>
 
+{% endblock %}
+
+{% block js %}
+    {% load staticfiles %}
+    <script src="{% static 'posts/js/validator/login_validator.js' %}"></script>
 {% endblock %}

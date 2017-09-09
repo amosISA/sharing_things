@@ -32,8 +32,7 @@ urlpatterns = [
     url(r'^$', views.src_index),
 
     #url(r'^accounts/login/', login, {'template_name': 'login.html'}, name='login'),
-    url(r'^accounts/login/', LoginView.as_view(redirect_authenticated_user=True,
-                                               template_name='login.html'), name='login'),
+    url(r'^accounts/login/', views.custom_login, {'template_name':'login.html'}, name='login'),
     url(r'^register/$', views.RegisterView.as_view(), name="register"),
     url(r'^activate/(?P<code>[a-z0-9].*)/$', activate_user_view, name='activate'),
     url(r'^logout/', logout_then_login, name='logout'),

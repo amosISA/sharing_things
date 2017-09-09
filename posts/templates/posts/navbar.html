@@ -17,6 +17,11 @@
             <ul class="nav navbar-nav">
                 <li {% if request.path == '/posts/' %}class="active"{% endif %}><a href="{% url 'posts:index' %}">Inicio</a></li>
             </ul>
+            <div class="ag_wrapper_general_form_search col-sm-3 col-md-3">
+                <form class="search_form_navbar" method="GET">
+                    <input style="background-image: url('{% static 'posts/img/icons/searchicon.png' %}');" type="text" class="ag_navbar_search_input" placeholder="Buscar" name="q">
+                </form>
+            </div>
             <ul class="nav navbar-nav navbar-right">
                 {% if request.user.is_authenticated %}
                     <li>

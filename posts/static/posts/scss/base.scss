@@ -440,6 +440,15 @@ body {
             border: solid 1px #00b5e2;
           }
         }
+
+        /* Small error inputs */
+        .ag_error_message_inputs_username_login,
+        .ag_error_message_inputs_password_login {
+          font-size: 1em;
+          text-align: left;
+          color: #ff7142;
+          margin-bottom: 3px;
+        }
       }
     }
 
@@ -518,4 +527,28 @@ body {
   background: #fff;
   min-width: 120px;
   max-width: 100%;
+}
+
+/* Navbar Search Form */
+.ag_wrapper_general_form_search {
+  .search_form_navbar { margin-top: 5%; height: 30px; }
+  .search_form_navbar input[type=text] {
+    height: 100%;
+    border: solid 1px #e6e6e6;
+    border-radius: 3px;
+    font-size: 16px;
+    width: 130px;
+    box-sizing: border-box;
+    background-color: white;
+    background-position: 4px 4px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+
+    &:focus {
+      border: solid 1px #00b5e2;
+      width: 100%;
+    }
+  }
 }

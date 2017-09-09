@@ -296,7 +296,8 @@ body {
       .ag_auth_page_login .ag_form_auth_login .ag_form_block_input .ag_form_inner_wrapper {
         width: 100%;
         display: flex;
-        flex-direction: column-reverse; }
+        flex-direction: column-reverse;
+        /* Small error inputs */ }
         .ag_auth_page_login .ag_form_auth_login .ag_form_block_input .ag_form_inner_wrapper .ag_input_form_login {
           border: solid 1px #e6e6e6;
           width: 100%;
@@ -305,6 +306,12 @@ body {
           font-size: 16px; }
           .ag_auth_page_login .ag_form_auth_login .ag_form_block_input .ag_form_inner_wrapper .ag_input_form_login:focus {
             border: solid 1px #00b5e2; }
+        .ag_auth_page_login .ag_form_auth_login .ag_form_block_input .ag_form_inner_wrapper .ag_error_message_inputs_username_login,
+        .ag_auth_page_login .ag_form_auth_login .ag_form_block_input .ag_form_inner_wrapper .ag_error_message_inputs_password_login {
+          font-size: 1em;
+          text-align: left;
+          color: #ff7142;
+          margin-bottom: 3px; }
     .ag_auth_page_login .ag_form_auth_login .ag_login_form_options {
       text-align: right;
       margin-bottom: 20px; }
@@ -367,5 +374,26 @@ body {
   .ag_webapp_content input[type="password"]:required,
   .ag_webapp_content input[type="email"]:required {
     box-shadow: none; }
+
+/* Navbar Search Form */
+.ag_wrapper_general_form_search .search_form_navbar {
+  margin-top: 5%;
+  height: 30px; }
+.ag_wrapper_general_form_search .search_form_navbar input[type=text] {
+  height: 100%;
+  border: solid 1px #e6e6e6;
+  border-radius: 3px;
+  font-size: 16px;
+  width: 130px;
+  box-sizing: border-box;
+  background-color: white;
+  background-position: 4px 4px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out; }
+  .ag_wrapper_general_form_search .search_form_navbar input[type=text]:focus {
+    border: solid 1px #00b5e2;
+    width: 100%; }
 
 /*# sourceMappingURL=base.css.map */
