@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView
 from django.contrib.auth.views import login
 
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm
 from django.contrib.auth.views import login
 
 def src_index(request):
