@@ -391,7 +391,7 @@ body {
 }
 
 /* Login */
-.ag_auth_page_login {
+.ag_auth_page_login, .ag_auth_page_register {
   width: 95%;
   margin: auto;
   max-width: 380px;
@@ -509,6 +509,11 @@ body {
       }
     }
   }
+}
+
+/* Register */
+.ag_auth_page_register {
+
 }
 
 .ag_webapp_content input[type="text"],

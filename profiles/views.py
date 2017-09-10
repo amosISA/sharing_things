@@ -42,20 +42,16 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
             is_following=True
         context['is_following'] = is_following
 
-        #query = self.request.GET.get('q')
-        #qs = Post.objects.filter(user=user).search(query)
+        query = self.request.GET.get('q')
+        qs = Post.objects.filter(user=user).search(query)
         #if query:
             #qs = qs.search(query) # aqui como se le pasa el usuario busca solo los posts de ese usuario
             #qs = Post.objects.search(query) # aqui como no hay usuario, busca en todos los posts
 
-        #if qs.exists():
-            # context['settings'] = qs
+        if qs.exists():
+            context['settings'] = qs
             #context['settings'] = serializers.serialize('json', qs, fields=('title'))
         return context
-
-def json_amos(request):
-    pass
-
 
 # User activation email
 def activate_user_view(request, code=None, *args, **kwargs):

@@ -1,69 +1,77 @@
 {% extends 'posts/base.html' %}
 
 {% block content %}
+    {% load tags %}
+    <div class="ag_auth_page_register">
+        <form name="ag_register_form" class="ag_form_auth_register" method="post">
+            {% csrf_token %}
 
-    <form method="post">
-        {% csrf_token %}
+            <div class="ag_form_block_input">
+                <div class="ag_form_inner_wrapper">
+                    {{ form.username.label_tag }}
+                    {{ form.username|htmlattributes:"class: ag_input_form_login" }}
+                    {{ form.username.errors }}
+                </div>
+            </div>
 
-        <!--<div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <input class="form-control" type="text" name="first_name">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        {{ form.email.errors }}
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="form-group">
-                    <label >Apellidos</label>
-                    <input class="form-control" type="text" name="last_name">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="form-group">
-                    <label >Nombre de usuario</label>
-                    <input class="form-control" type="text" name="username">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="form-group">
-                    <label >Correo</label>
-                    <input class="form-control" type="text" name="email">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="form-group">
-                    <label >Contraseña</label>
-                    <input class="form-control" type="password" name="password1">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="form-group">
-                    <label >Confirmar contraseña</label>
-                    <input class="form-control" type="password" name="password2">
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="form-group">
-                    <button class="btn btn-primary "type="submit">Guardar</button>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        {{ form.first_name.errors }}
+                        {{ form.first_name.label_tag }}
+                        {{ form.first_name }}
+                    </div>
                 </div>
             </div>
-        </div>-->
 
-        {{ form.as_p }}
-        <input type="submit" value="Registrar" />
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        {{ form.last_name.errors }}
+                        {{ form.last_name.label_tag }}
+                        {{ form.last_name }}
+                    </div>
+                </div>
+            </div>
 
-    </form>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        {{ form.password1.errors }}
+                        {{ form.password1.label_tag }}
+                        {{ form.password1 }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        {{ form.password2.errors }}
+                        {{ form.password2.label_tag }}
+                        {{ form.password2 }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group">
+                        <input type="submit" value="Registrar" />
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
 {% endblock %}
