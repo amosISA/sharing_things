@@ -10,7 +10,7 @@
                 <div class="ag_form_login_message_error">
                     {% for field in form %}
                         {% if field.errors %}
-                            {{ field.errors|striptags }}<br />
+                            - {{ field.errors|striptags }}<br />
                         {% endif %}
                     {% endfor %}
                 </div>
