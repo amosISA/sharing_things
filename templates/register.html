@@ -6,11 +6,20 @@
         <form name="ag_register_form" class="ag_form_auth_register" method="post">
             {% csrf_token %}
 
+            {% if form.errors %}
+                <div class="ag_form_login_message_error">
+                    {% for field in form %}
+                        {% if field.errors %}
+                            {{ field.errors|striptags }}<br />
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
             <div class="ag_form_block_input">
                 {{ form.username.label_tag }}
                 <div class="ag_form_inner_wrapper">
                     {{ form.username|htmlattributes:"class: ag_input_form_register" }}
-                    {{ form.username.errors }}
                 </div>
             </div>
 
@@ -18,7 +27,6 @@
                 {{ form.email.label_tag }}
                 <div class="ag_form_inner_wrapper">
                     {{ form.email|htmlattributes:"class: ag_input_form_register" }}
-                    {{ form.email.errors }}
                 </div>
             </div>
 
@@ -26,7 +34,6 @@
                 {{ form.first_name.label_tag }}
                 <div class="ag_form_inner_wrapper">
                     {{ form.first_name|htmlattributes:"class: ag_input_form_register" }}
-                    {{ form.first_name.errors }}
                 </div>
             </div>
 
@@ -34,7 +41,6 @@
                 {{ form.last_name.label_tag }}
                 <div class="ag_form_inner_wrapper">
                     {{ form.last_name|htmlattributes:"class: ag_input_form_register" }}
-                    {{ form.last_name.errors }}
                 </div>
             </div>
 
@@ -42,7 +48,6 @@
                 {{ form.password1.label_tag }}
                 <div class="ag_form_inner_wrapper">
                     {{ form.password1|htmlattributes:"class: ag_input_form_register" }}
-                    {{ form.password1.errors }}
                 </div>
             </div>
 
@@ -50,7 +55,6 @@
                 {{ form.password2.label_tag }}
                 <div class="ag_form_inner_wrapper">
                     {{ form.password2|htmlattributes:"class: ag_input_form_register" }}
-                    {{ form.password2.errors }}
                 </div>
             </div>
 
@@ -78,6 +82,11 @@
                 new_value = $(this).text().slice(0,-1);
                 $(this).text(new_value);
                 $(this).append("<span class='ag_label_span_required'>*</span>");
+            });
+
+            /* Change error list */
+            $("ul.errorlist").each(function(index){
+                $(this).appendTo($(this).parent());
             });
         });
     </script>

@@ -374,9 +374,19 @@ body {
     background-color: #fff;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
     padding: 2.9em 2.5em 1.7em 2.5em;
+    /* Form register error messages div */
     /* Input divs blocks */
     /* Register Button */
     /* Login Hint */ }
+    .ag_auth_page_register .ag_form_auth_register .ag_form_login_message_error {
+      color: #ff7142;
+      background-color: #fff5f2;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      min-height: 50px;
+      padding: 6px 25px 6px 15px;
+      margin-bottom: 10px; }
     .ag_auth_page_register .ag_form_auth_register .ag_form_block_input {
       text-align: left;
       margin-bottom: 1em; }
@@ -432,12 +442,11 @@ body {
         text-decoration: none; }
     .ag_auth_page_register .ag_form_auth_register .ag_auth_page_login_account_hint {
       color: #666; }
-      .ag_auth_page_register .ag_form_auth_register .ag_auth_page_login_account_hint .ag_auth_page_signup_button {
+      .ag_auth_page_register .ag_form_auth_register .ag_auth_page_login_account_hint .ag_auth_page_login_button {
         margin-left: 5px;
         color: #00b5e2;
-        text-decoration: none;
         cursor: pointer; }
-        .ag_auth_page_register .ag_form_auth_register .ag_auth_page_login_account_hint .ag_auth_page_signup_button:hover {
+        .ag_auth_page_register .ag_form_auth_register .ag_auth_page_login_account_hint .ag_auth_page_login_button:hover {
           text-decoration: underline; }
 
 .ag_webapp_content input[type="text"],
