@@ -3,9 +3,10 @@ from __future__ import unicode_literals
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import DetailView, View
+from django.core import serializers
 
 from posts.models import Post
 from .models import Profile
@@ -40,14 +41,21 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         if user.profile in self.request.user.is_following.all():
             is_following=True
         context['is_following'] = is_following
-        query = self.request.GET.get('q')
-        qs = Post.objects.filter(user=user).search(query)
+
+        #query = self.request.GET.get('q')
+        #qs = Post.objects.filter(user=user).search(query)
         #if query:
             #qs = qs.search(query) # aqui como se le pasa el usuario busca solo los posts de ese usuario
             #qs = Post.objects.search(query) # aqui como no hay usuario, busca en todos los posts
-        if qs.exists():
-            context['settings'] = qs
+
+        #if qs.exists():
+            # context['settings'] = qs
+            #context['settings'] = serializers.serialize('json', qs, fields=('title'))
         return context
+
+def json_amos(request):
+    pass
+
 
 # User activation email
 def activate_user_view(request, code=None, *args, **kwargs):

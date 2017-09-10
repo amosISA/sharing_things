@@ -4,7 +4,7 @@
     <div class="row">
         <div class="ag_posts_wrapper col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
             <!-- Search form -->
-            <form class="form" method="GET" action="">
+            <form class="form" method="GET" action="" id="ag_form_profile_user_search">
                 <input type="text" placeholder="Search..." name="q" value="{{ request.GET.q }}">
                 <button type="submit" class="btn btn-default" type="submit">Submit</button>
             </form>
@@ -20,7 +20,7 @@
             <!-- Otra forma de comprobarlo => {% if user.post_set.all.exists %}-->
             {% if settings %}
                 <h3>Posts creados por {{ user.username }}:</h3>
-                {% for post in  settings %}
+                {% for post in settings %}
                     <div>
                         <ul>
                             <li>{{ post.title }}</li>
@@ -36,5 +36,24 @@
             <h3>Posts que le gustan a {{ user.username }}</h3>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        /*$(document).ready(function() {
+            $("#ag_form_profile_user_search").submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    data: $(this).serialize(),
+
+                    success: function(json) {
+                        console.log(json);
+                    }
+                });
+            });
+        });*/
+    </script>
 {% endblock %}
 
