@@ -155,13 +155,13 @@ LOGOUT_REDIRECT_URL = reverse_lazy('login')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'pruebaserver001@gmail.com'
-EMAIL_HOST_PASSWORD = 'server00'
+EMAIL_HOST_USER = 'agoraweb700@gmail.com'
+EMAIL_HOST_PASSWORD = 'Agora7000'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'pruebaserver001@gmail.com'
+DEFAULT_FROM_EMAIL = 'agoraweb700@gmail.com'
 
 # To receive server errors to my inbox
 ADMINS = (
-    ('Amos', 'pruebaserver001@gmail.com'),
+    ('Amos', 'agoraweb700@gmail.com'),
 )
 MANAGERS = ADMINS
