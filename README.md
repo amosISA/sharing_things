@@ -23,6 +23,5 @@
 	16. Cuando se registren q les lleve a una ventana intermedia q diga gracias por registrarte ahora proceda a activar su cuenta
 	y luego a subir su primer post!!
 	17. CON React añadir algo al frontend para practicar
-	18. Crear un email para el servidor
 	19. Crear rest api para django -> vicent dice q flask
 	20. Añadir webpack (principalmente para sass y react jsx)
