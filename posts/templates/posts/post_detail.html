@@ -13,9 +13,9 @@
             <div class="row">
                 <div class="ag_article_header col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2">
                     <div class="ag_article_name_poster">
-                        <a href="">
+                        <a href="{% url "profiles:user_profile" username=user.username %}">
                             <div class="ag_article_avatar_image_user">
-                                <div class="ag_article_div_image" style="background-image: url('{% static 'posts/img/favicon/fav.png' %}');"></div>
+                                <div class="ag_article_div_image" style="{% if instance.user.profile.avatar %}background-image: url('{{ instance.user.profile.avatar.url }}');{% else %}background-image: url('{% static 'posts/img/favicon/fav.png' %}');{% endif %}"></div>
                             </div>
                             {{ instance.user.get_full_name|title }}
                         </a>

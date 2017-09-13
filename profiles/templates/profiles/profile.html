@@ -1,13 +1,37 @@
 {% extends "posts/base.html" %}
 
 {% block content %}
+    {% load staticfiles %}
     <div class="row">
         <div class="ag_posts_wrapper col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+            <div class="row ag_profile_parralax" style="background-image: url('{% static 'posts/img/parallax/parallax2.jpg' %}');">
+                <div class="col-md-12 col-sm-12 ag_user_profile_info_block">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 info_block_avatar">
+                            <div class="info_block_avatar_radius">
+                                <div class="info_block_avatar_image">
+                                    {% if user.profile.avatar %}
+                                        <img src="{{ user.profile.avatar.url }}" alt="User Image" />
+                                    {% else %}
+                                        <img src="{% static 'posts/img/favicon/fav.png' %}" alt="User Image" />
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 info_block_user_name">
+                            <span>{{ user.get_full_name|title }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Search form -->
-            <form class="form" method="GET" action="" class="ag_form_profile_user_search">
+            <!--<form class="form" method="GET" action="" class="ag_form_profile_user_search">
                 <input type="text" placeholder="Search..." name="q" value="{{ request.GET.q }}">
                 <button type="submit" class="btn btn-default" type="submit">Submit</button>
-            </form>
+            </form>-->
 
 
             <h1>{{ user.username }}</h1>

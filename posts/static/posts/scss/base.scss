@@ -813,3 +813,55 @@ body {
     }
   }
 }
+
+/* User profile info block */
+.ag_profile_parralax {
+  /* Parallax effect */
+  /* Set a specific height */
+  min-height: 200px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .ag_user_profile_info_block {
+    padding: 50px 0 80px;
+    text-align: center;
+
+    .row { text-align: center; margin: 0 auto; }
+
+    .info_block_avatar {
+
+      .info_block_avatar_radius {
+        border-radius: 50%;
+        overflow: hidden;
+        display: inline-block;
+
+        .info_block_avatar_image {
+          width: 140px;
+          height: 140px;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+
+    .info_block_user_name {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: solid 1px transparent;
+      padding: 20px 40px 8px;
+      font-size: 28px;
+      font-weight: bold;
+      line-height: 1.07;
+      color: #fff;
+    }
+  }
+}
