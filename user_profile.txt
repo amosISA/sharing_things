@@ -1,0 +1,26 @@
+<!-- Para acceder al perfil del usuario en la plantilla -->
+<!-- Otra forma de comprobarlo => {% if user.post_set.all.exists %}-->
+{% if settings %}
+    <h3>Posts creados por {{ user.username }}:</h3>
+    {% for post in settings %}
+        <div>
+            <ul>
+                <li>{{ post.title }}</li>
+            </ul>
+            <!--<p>{{ post.content|truncatewords:50|safe }}</p>-->
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Aun no ha creado ningun post. Pinche aquí para crear uno y comparte tus ideas!</p>
+{% endif %}
+<!--{% endif %}-->
+
+
+<!-- Para saber a quien seguiemos y quien nos sigue -->
+{% if user.username != request.user.username %}
+{{ request.user }} esta siguiendo a => {{ request.user.is_following.all }}
+{% if user.profile in request.user.is_following.all %}
+    Lo estoy siguiendo
+{% endif %}
+<p>{% include "profiles/snippet/follow_form.html" with username=user.username is_following=is_following %}</p>
+{% endif %}

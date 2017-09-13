@@ -862,6 +862,76 @@ body {
       line-height: 1.07;
       color: #fff;
     }
+
+    .block_user_follow {
+      padding-top: 25px;
+      display: flex;
+      justify-content: center;
+
+      .block_inner_following {
+        padding: 10px 20px;
+        font-size: 13px;
+        line-height: 13px;
+        margin: 0 10px;
+        background: transparent;
+        color: #00b5e2;
+        border: 1px solid #00b5e2;
+        border-radius: 3px;
+        text-shadow: none;
+        box-shadow: none;
+        text-align: center;
+        outline: none;
+        cursor: pointer;
+        display: inline-block;
+        text-transform: capitalize;
+        letter-spacing: 0;
+
+        &:hover {
+          background: transparent;
+          color: #00a3cb;
+          border: 1px solid #00a3cb;
+        }
+
+        &:active {
+          background: #00b5e2;
+          border: 1px solid #00b5e2;
+          color: #fff;
+        }
+      }
+
+      .block_inner_unfollow {
+        padding: 11px 20px;
+        font-size: 13px;
+        line-height: 13px;
+        margin: 0 10px;
+        color: #fff;
+        background: #00b5e2;
+        border-radius: 3px;
+        text-align: center;
+        outline: none;
+        cursor: pointer;
+        display: inline-block;
+        border: none;
+        text-transform: capitalize;
+        text-shadow: none;
+        letter-spacing: 0;
+
+        &:active {
+          padding: 10px 20px;
+          background: transparent;
+          color: #00b5e2;
+          border: 1px solid #00b5e2;
+        }
+
+        &:hover {
+          background: #00a3cb;
+          box-shadow: none;
+          text-decoration: none;
+          color: #fff;
+          border-color: #204d74;
+        }
+      }
+    }
   }
 }
 
@@ -893,6 +963,17 @@ body {
     background-color: #fff;
     border: solid 1px #e5eaea;
 
+    a {
+      margin: {
+        left: 5px;
+        right: 5px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
     .ag_prof_inner_image {
       width: 120px;
       height: 120px;
@@ -923,6 +1004,14 @@ body {
         flex: 1;
         margin-top: 5px;
         margin-bottom: 20px;
+      }
+
+      .ag_prof_inner_link {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
       }
     }
   }
