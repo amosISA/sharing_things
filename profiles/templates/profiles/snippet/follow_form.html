@@ -1,15 +1,15 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 block_user_follow">
         {% if request.user.is_authenticated %}
-            <form class="form" name="following_form" method="POST" action="{% url 'follow' %}">{% csrf_token %}
+            <form class="following_form" method="POST" action="{% url 'follow' %}">{% csrf_token %}
                 <input type="hidden" name="username" value="{% if username %}{{ username }}{% else %}amos{% endif %}" />
-                <div id="follow_div_as_button" onClick="javascript:this.form.submit();" class="{% if is_following %}block_inner_unfollow{% else %}block_inner_following{% endif %}">
+                <button type="submit" id="follow_div_as_button" class="{% if is_following %}block_inner_unfollow{% else %}block_inner_following{% endif %}">
                     {% if is_following %}
                         UNFOLLOW
                     {% else %}
                         FOLLOW
                     {% endif %}
-                </div>
+                </button>
             </form>
         {% endif %}
     </div>

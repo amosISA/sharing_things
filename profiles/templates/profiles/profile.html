@@ -84,15 +84,3 @@
     {% endif %}
 {% endblock %}
 
-{% block js %}
-    <script>
-        $(document).ready(function() {
-            if($("#follow_div_as_button")) {
-                $(this).on('click', function () {
-                    document.following_form.submit();
-                });
-            }
-        });
-    </script>
-{% endblock %}
-
