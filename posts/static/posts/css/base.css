@@ -737,10 +737,17 @@ body {
     background-color: #fff;
     border: solid 1px #e5eaea; }
     .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner a {
-      margin-left: 5px;
-      margin-right: 5px; }
-      .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner a:hover {
-        text-decoration: underline; }
+      flex: none;
+      padding: 0;
+      margin-left: 0;
+      color: #00b5e2;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: bold;
+      display: inline-block; }
+      .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner a i {
+        font-size: 14px;
+        margin-right: 8px; }
     .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_image {
       width: 120px;
       height: 120px;
