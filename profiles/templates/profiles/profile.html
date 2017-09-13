@@ -2,6 +2,7 @@
 
 {% block content %}
     {% load staticfiles %}
+    <!-- USER PROFILE: AVATAR AND NAME -->
     <div class="row">
         <div class="ag_posts_wrapper col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
             <div class="row ag_profile_parralax" style="background-image: url('{% static 'posts/img/parallax/parallax2.jpg' %}');">
@@ -34,34 +35,75 @@
             </form>-->
 
 
+
+
             <h1>{{ user.username }}</h1>
+            {% if user.username != request.user.username %}
             {{ request.user }} esta siguiendo a => {{ request.user.is_following.all }}
             {% if user.profile in request.user.is_following.all %}
                 Lo estoy siguiendo
             {% endif %}
             <p>{% include "profiles/snippet/follow_form.html" with username=user.username is_following=is_following %}</p>
-
-
-            <h3>Información del usuario:</h3>
-            <!-- Otra forma de comprobarlo => {% if user.post_set.all.exists %}-->
-            {% if settings %}
-                <h3>Posts creados por {{ user.username }}:</h3>
-                {% for post in settings %}
-                    <div>
-                        <ul>
-                            <li>{{ post.title }}</li>
-                        </ul>
-                        <!--<p>{{ post.content|truncatewords:50|safe }}</p>-->
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p>Aun no ha creado ningun post. Pinche aqui para crear uno. Spread your idea with us!</p>
             {% endif %}
-            <!--{% endif %}-->
+
+        <!-- Otra forma de comprobarlo => {% if user.post_set.all.exists %}-->
+                {% if settings %}
+                    <h3>Posts creados por {{ user.username }}:</h3>
+                    {% for post in settings %}
+                        <div>
+                            <ul>
+                                <li>{{ post.title }}</li>
+                            </ul>
+                            <!--<p>{{ post.content|truncatewords:50|safe }}</p>-->
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Aun no ha creado ningun post. Pinche aquí para crear uno y comparte tus ideas!</p>
+                {% endif %}
+                <!--{% endif %}-->
 
 
             <h3>Posts que le gustan a {{ user.username }}</h3>
         </div>
     </div>
+
+    <!-- USER POSTS -->
+    <div class="row">
+        <div class="ag_profile_block_posts_by_user col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+            <div class="ag_profile_block_posts_title">
+                POSTS POR {{ user.username|upper }}
+            </div>
+        </div>
+    </div>
+
+    {% if settings %}
+        {% for post in settings %}
+            <div class="row">
+                <div class="ag_profile_block_posts_by_content col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                    <div class="ag_profile_block_posts_by_content_inner">
+                        {% if post.image %}
+                            <div style="background-image: url('{{ post.image.url }}');" class="ag_prof_inner_image"></div>
+                        {% endif %}
+                        <div class="ag_prof_inner_content">
+                            <div class="ag_prof_inner_title_post">
+                                {{ post.title }}
+                            </div>
+                            <div class="ag_prof_inner_content_post">
+                                {{ post.content|truncatewords:20|safe }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="row">
+            <div class="ag_profile_block_posts_by_content col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                <div class="ag_profile_block_posts_by_content_inner">
+                    Aun no ha creado ningun post. Pinche aquí para crear uno y comparte tus ideas!
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 
