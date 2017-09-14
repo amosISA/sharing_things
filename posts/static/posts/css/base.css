@@ -755,6 +755,9 @@ body {
       background-repeat: no-repeat;
       background-position: center center;
       margin-right: 30px; }
+    @media (max-width: 770px) {
+      .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_image {
+        display: none; } }
     .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content {
       flex: 1;
       min-height: 120px;
@@ -773,6 +776,9 @@ body {
         flex: 1;
         margin-top: 5px;
         margin-bottom: 20px; }
+      @media (max-width: 770px) {
+        .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_content_post {
+          display: none; } }
       .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_link {
         position: absolute;
         width: 100%;
@@ -838,8 +844,9 @@ body {
               font-size: 15px; }
         @media (max-width: 770px) {
           .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit {
-            position: absolute;
-            z-index: -1; } }
+            display: inline-block; }
+            .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_edit, .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_del {
+              margin: 0; } }
 
 /* Create post */
 .ag_create_post_wrapper {
