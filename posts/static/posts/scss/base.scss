@@ -1027,6 +1027,41 @@ body {
 
         .user_options_like_comment {
           flex: 1;
+
+          .user_opt_likes {
+            i {
+              color: #f66;
+              margin-right: 5px;
+              display: inline-block;
+              font: normal normal normal 14px/1 FontAwesome;
+              font-size: inherit;
+            }
+
+            span {
+              text-align: right;
+              font-size: 13px;
+              line-height: 1.38;
+              color: #333;
+            }
+          }
+
+          .user_opt_comments {
+            display: flex;
+            align-items: center;
+            margin-left: 1em;
+
+            img {
+              margin-right: 5px;
+              width: 15px;
+            }
+
+            span {
+              text-align: right;
+              font-size: 13px;
+              line-height: 1.38;
+              color: #333;
+            }
+          }
         }
 
         .user_options_del_edit {
@@ -1054,6 +1089,13 @@ body {
             a {color: #000;}
             i {font-size: 15px;}
           }
+        }
+
+        @media (max-width: 770px) {
+            .user_options_del_edit {
+                position: absolute;
+                z-index:-1;
+             }
         }
       }
     }

@@ -786,6 +786,29 @@ body {
         z-index: 1; }
         .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_like_comment {
           flex: 1; }
+          .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_like_comment .user_opt_likes i {
+            color: #f66;
+            margin-right: 5px;
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit; }
+          .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_like_comment .user_opt_likes span {
+            text-align: right;
+            font-size: 13px;
+            line-height: 1.38;
+            color: #333; }
+          .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_like_comment .user_opt_comments {
+            display: flex;
+            align-items: center;
+            margin-left: 1em; }
+            .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_like_comment .user_opt_comments img {
+              margin-right: 5px;
+              width: 15px; }
+            .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_like_comment .user_opt_comments span {
+              text-align: right;
+              font-size: 13px;
+              line-height: 1.38;
+              color: #333; }
         .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit {
           text-align: right;
           font-size: 13px;
@@ -813,6 +836,10 @@ body {
               color: #000; }
             .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_edit i {
               font-size: 15px; }
+        @media (max-width: 770px) {
+          .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit {
+            position: absolute;
+            z-index: -1; } }
 
 /* Create post */
 .ag_create_post_wrapper {
