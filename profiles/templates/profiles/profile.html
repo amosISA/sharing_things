@@ -68,6 +68,19 @@
                                 {{ post.content|truncatewords:20|safe }}
                             </div>
                             <a class="ag_prof_inner_link" href="{{ post.get_absolute_url }}"></a>
+                            <div class="ag_prof_inner_user_options">
+                                <div class="user_options_like_comment">
+
+                                </div>
+                                <div class="user_options_del_edit">
+                                    <div class="user_opt_edit">
+                                        <a href="{% url "posts:edit_post" slug=post.slug %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    </div>
+                                    <div class="user_opt_del">
+                                        <a href="{% url "posts:delete_post" slug=post.slug %}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

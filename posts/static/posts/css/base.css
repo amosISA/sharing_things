@@ -779,6 +779,40 @@ body {
         height: 100%;
         top: 0;
         left: 0; }
+      .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options {
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        z-index: 1; }
+        .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_like_comment {
+          flex: 1; }
+        .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit {
+          text-align: right;
+          font-size: 13px;
+          line-height: 1.38;
+          color: #333;
+          display: flex;
+          align-items: center; }
+          .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_del {
+            align-items: center;
+            display: flex;
+            width: 15px;
+            height: 15px;
+            text-align: center;
+            margin-left: 1em; }
+            .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_del a {
+              color: #000; }
+            .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_del i {
+              font-size: 20px; }
+          .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_edit {
+            align-items: center;
+            display: flex;
+            width: 15px;
+            height: 15px; }
+            .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_edit a {
+              color: #000; }
+            .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_edit i {
+              font-size: 15px; }
 
 /* Create post */
 .ag_create_post_wrapper {

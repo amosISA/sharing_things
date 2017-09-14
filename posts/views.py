@@ -169,13 +169,13 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super(PostCreateView, self).form_valid(form)
 
 # --------------- Edit Post --------------- #
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'posts/post_create.html'
     fields = ['title', 'content', 'image']
     success_url = reverse_lazy('posts:index')
 
 # --------------- Delete Post --------------- #
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('posts:index')

@@ -24,7 +24,7 @@
             </div>-->
             <ul class="nav navbar-nav navbar-right">
                 {% if request.user.is_authenticated %}
-                    <li><a href="">Hola</a></li>
+                    <li><a href="{% url 'posts:new_post' %}">Write a Post</a></li>
                     <li class="divider-vertical"><a></a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ request.user.get_full_name|title }} <span class="caret"></span></a>
