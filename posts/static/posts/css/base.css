@@ -889,4 +889,15 @@ body {
       box-shadow: none;
       text-decoration: none; }
 
+/* Navbar line-divider */
+.nav .divider-vertical {
+  height: 30px;
+  border-left: 1px solid #f2f2f2;
+  float: left;
+  margin: 15px 15px; }
+
+@media (max-width: 767px) {
+  .nav .divider-vertical {
+    display: none; } }
+
 /*# sourceMappingURL=base.css.map */
