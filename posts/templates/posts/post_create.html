@@ -1,28 +1,53 @@
 {% extends "posts/base.html" %}
 {% block content %}
-    <h1>Create post.</h1>
 
-    <form class="form-horizontal" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
-        {{ form.non_field_errors }}
+    {% load staticfiles %}
+    <div class="row">
+        <div class="ag_create_post_wrapper col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+                {{ form.non_field_errors }}
 
-        <div class="form-group">
-            {{ form.title.errors }}
-            <label for="{{ form.title.id_for_label }}">Title:</label>
-            {{ form.title }}
+                <div class="form-group">
+                    {{ form.title.errors }}
+                    <label for="{{ form.title.id_for_label }}">Title:</label>
+                    {{ form.title }}
+                </div>
+
+                <!-- Image -->
+                <div class="input-group image-preview">
+                    <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                    <span class="input-group-btn">
+                        <!-- image-preview-clear button -->
+                        <div class="image-preview-input image-preview-btn-defautl image-preview-clear" style="display:none;">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                            <span>Clear</span>
+                        </div>
+                        <!-- image-preview-input -->
+                        <div class="image-preview-input image-preview-btn-defautl">
+                            <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                            <span class="image-preview-input-title">Browse</span>
+                            <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                        </div>
+                    </span>
+                </div><!-- /input-group image-preview [TO HERE]-->
+                <!--<div class="form-group">
+                    {{ form.image.errors }}
+                    <label for="{{ form.image.id_for_label }}">Image:</label>
+                    {{ form.image }}
+                </div>-->
+
+                <div class="form-group">
+                    {{ form.content.errors }}
+                    <label for="{{ form.content.id_for_label }}">Content:</label>
+                    {{ form.content }}
+                </div>
+
+                <input type="submit" value="Create Post" />
+            </form>
         </div>
+    </div>
+{% endblock %}
 
-        <div class="form-group">
-            {{ form.content.errors }}
-            <label for="{{ form.content.id_for_label }}">Content:</label>
-            {{ form.content }}
-        </div>
-
-        <div class="form-group">
-            {{ form.image.errors }}
-            <label for="{{ form.image.id_for_label }}">Image:</label>
-            {{ form.image }}
-        </div>
-
-        <input type="submit" value="Create Post" />
-    </form>
+{% block js %}
+    <script src="{% static 'posts/js/file_image.js' %}"></script>
 {% endblock %}
