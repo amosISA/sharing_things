@@ -2,15 +2,22 @@
 {% block content %}
 
     {% load staticfiles %}
+    {% load tags %}
     <div class="row">
         <div class="ag_create_post_wrapper col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
             <form class="form-horizontal" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
-                {{ form.non_field_errors }}
 
-                <div class="form-group">
-                    {{ form.title.errors }}
-                    <label for="{{ form.title.id_for_label }}">Title:</label>
-                    {{ form.title }}
+                {% if form.errors %}
+                    <div class="ag_form_login_message_error">
+                        {% for field,error in form.errors.items %}
+                            {{ field|capfirst }} - {{ error|striptags }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Title -->
+                <div class="input-group title-create_post">
+                    {{ form.title|htmlattributes:"placeholder: Título, class:form-control" }}
                 </div>
 
                 <!-- Image -->
@@ -26,23 +33,17 @@
                         <div class="image-preview-input image-preview-btn-defautl">
                             <i class="fa fa-folder-open-o" aria-hidden="true"></i>
                             <span class="image-preview-input-title">Browse</span>
-                            <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                            {{ form.image }}
                         </div>
                     </span>
-                </div><!-- /input-group image-preview [TO HERE]-->
-                <!--<div class="form-group">
-                    {{ form.image.errors }}
-                    <label for="{{ form.image.id_for_label }}">Image:</label>
-                    {{ form.image }}
-                </div>-->
-
-                <div class="form-group">
-                    {{ form.content.errors }}
-                    <label for="{{ form.content.id_for_label }}">Content:</label>
-                    {{ form.content }}
                 </div>
 
-                <input type="submit" value="Create Post" />
+                <!-- Content -->
+                <div class="form-group">
+                    {{ form.content|htmlattributes:"class:form-control" }}
+                </div>
+
+                <input class="button_submit_create_form" type="submit" value="Create Post" />
             </form>
         </div>
     </div>

@@ -1,5 +1,5 @@
 $(function() {
-    
+
     // Clear event
     $('.image-preview-clear').click(function(){
         $('.image-preview-filename').val("");
