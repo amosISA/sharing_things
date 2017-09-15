@@ -158,14 +158,35 @@ body {
           }
 
           /* Post Image */
-          .ag_post_image_div {
+          .wrapper_div_image {
+            width: 260px;
+            height: 150px;
             display: flex;
-            width: 60%;
-            height: 200px;
-            margin: {
-              top: 1em;
-              bottom: 1em;
+            overflow: hidden;
+
+            .ag_post_image_div {
+              display: flex;
+              flex: 1;
+              /*width: 60%;
+              height: 200px;
+              margin: {
+                top: 1em;
+                bottom: 1em;
+              }*/
+
+              .ag_post_image_div_progressive {
+                width: 100%;
+                height: 100%;
+                max-width: 900px;
+                position: relative;
+                overflow: hidden;
+              }
             }
+          }
+          @media (max-width: 767px) {
+            .wrapper_div_image {
+                display: none;
+             }
           }
         }
       }

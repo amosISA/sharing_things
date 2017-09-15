@@ -39,8 +39,12 @@
                                     {{ item.content|truncatewords:50|safe }}
                                 </div>
                                 {% if item.image %}
-                                    <div class="row ag_post_image_div">
-                                        <img class="ag_post_img img-responsive" src="{{ item.image.url }}" alt="Post image" />
+                                    <div class="wrapper_div_image">
+                                        <div class="row ag_post_image_div">
+                                            <div class="ag_post_image_div_progressive">
+                                                <img class="ag_post_img img-responsive" src="{{ item.image.url }}" alt="Post image" />
+                                            </div>
+                                        </div>
                                     </div>
                                 {% endif %}
                             </a>
