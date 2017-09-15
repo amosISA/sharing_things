@@ -1289,4 +1289,18 @@ body {
      }
 }
 
+/* Update post image file */
+.ag_create_post_wrapper {
+  .update_file_image_div {
+    margin-bottom: 25px;
+
+    a {
+      display: block;
+    }
+
+    #image-clear_id {
+      margin-right: 5px;
+    }
+  }
+}
 

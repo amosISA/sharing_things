@@ -968,5 +968,12 @@ body {
 @media (max-width: 767px) {
   .nav .divider-vertical {
     display: none; } }
+/* Update post image file */
+.ag_create_post_wrapper .update_file_image_div {
+  margin-bottom: 25px; }
+  .ag_create_post_wrapper .update_file_image_div a {
+    display: block; }
+  .ag_create_post_wrapper .update_file_image_div #image-clear_id {
+    margin-right: 5px; }
 
 /*# sourceMappingURL=base.css.map */

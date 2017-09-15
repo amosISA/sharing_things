@@ -19,7 +19,7 @@
                 <div class="input-group title-create_post">
                     {{ form.title|htmlattributes:"placeholder: Título, class:form-control" }}
                 </div>
-            
+
                 {% if request.path == '/posts/new/' %}
                     <!-- Image -->
                     <div class="input-group image-preview">
@@ -39,7 +39,7 @@
                         </span>
                     </div>
                 {% else %}
-                    <div class="input-group">
+                    <div class="input-group update_file_image_div">
                         {{ form.image }}
                     </div>
                 {% endif %}
