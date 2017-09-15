@@ -815,6 +815,9 @@ body {
               font-size: 13px;
               line-height: 1.38;
               color: #333; }
+        @media (max-width: 767px) {
+          .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_like_comment {
+            display: none; } }
         .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit {
           text-align: right;
           font-size: 13px;
@@ -844,9 +847,7 @@ body {
               font-size: 15px; }
         @media (max-width: 770px) {
           .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit {
-            display: inline-block; }
-            .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_edit, .ag_profile_block_posts_by_content .ag_profile_block_posts_by_content_inner .ag_prof_inner_content .ag_prof_inner_user_options .user_options_del_edit .user_opt_del {
-              margin: 0; } }
+            margin-top: 10px; } }
 
 /* Create post */
 .ag_create_post_wrapper {
