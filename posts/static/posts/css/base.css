@@ -993,4 +993,27 @@ body {
   .ag_create_post_wrapper .update_file_image_div #image-clear_id {
     margin-right: 5px; }
 
+/* Progressive image loading */
+.wrapper_div_image .placeholder {
+  background-color: #f6f6f6;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  max-width: 100%;
+  margin: 0 0 1rem;
+  border-radius: 5px; }
+.wrapper_div_image .placeholder img {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: opacity 1s linear; }
+.wrapper_div_image .placeholder img.loaded {
+  opacity: 1; }
+.wrapper_div_image .img-small {
+  filter: blur(100px); }
+
 /*# sourceMappingURL=base.css.map */

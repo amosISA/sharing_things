@@ -1325,3 +1325,34 @@ body {
   }
 }
 
+/* Progressive image loading */
+.wrapper_div_image {
+  .placeholder {
+    background-color: #f6f6f6;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    max-width: 100%;
+    margin: 0 0 1rem;
+    border-radius: 5px;
+  }
+
+  .placeholder img {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity 1s linear;
+  }
+
+  .placeholder img.loaded {
+    opacity: 1;
+  }
+
+  .img-small {
+    filter: blur(100px);
+  }
+}
