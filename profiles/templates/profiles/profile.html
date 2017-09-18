@@ -17,8 +17,10 @@
                                         <img src="{% static 'posts/img/favicon/fav.png' %}" alt="User Image" />
                                     {% endif %}
                                 </div>
-                                <!-- Button for upload the image avatar -->
-                                <a href=""><button class="ag_button_upload_image_avatar">UPLOAD</button></a>
+                                {% if user.username == request.user.username %}
+                                    <!-- Button for upload the image avatar -->
+                                    <a href=""><button class="ag_button_upload_image_avatar">UPLOAD</button></a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
