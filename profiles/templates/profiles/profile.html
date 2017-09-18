@@ -101,10 +101,14 @@
         <div class="row">
             <div class="ag_profile_block_posts_by_content col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
                 <div class="ag_profile_block_posts_by_content_inner">
-                    <a href="{% url 'posts:new_post' %}">
-                        <i class="fa fa-plus-circle"></i>
-                        ESCRIBE UN POST
-                    </a>
+                    {% if user.username == request.user.username %}
+                        <a href="{% url 'posts:new_post' %}">
+                            <i class="fa fa-plus-circle"></i>
+                            ESCRIBE UN POST
+                        </a>
+                    {% else %}
+                        Este usuario no ha escrito aún ningún post. 
+                    {% endif %}
                 </div>
             </div>
         </div>
