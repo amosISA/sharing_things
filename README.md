@@ -21,3 +21,4 @@
 	17. CON React añadir algo al frontend para practicar
 	19. Crear rest api para django -> vicent dice q flask
 	20. Añadir webpack (principalmente para sass y react jsx)
+	21. Añadir foto por defecto al modelo Profile avatar

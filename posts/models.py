@@ -16,7 +16,8 @@ User = settings.AUTH_USER_MODEL
 # Create your models here.
 def upload_location(instance, filename):
     first_word = instance.title.split(' ', 1)[0]
-    return "posts/%s_%s" % (first_word, filename)
+    username = instance.user.username
+    return "posts/%s/%s_%s" % (username, first_word, filename)
 
 # Methods for the search form
 class PostQuerySet(models.query.QuerySet):

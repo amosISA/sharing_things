@@ -13,7 +13,7 @@ User = settings.AUTH_USER_MODEL
 # Create your models here.
 def upload_location(instance, filename):
     username = instance.user.username
-    return "avatar/%s_%s" % (username, filename)
+    return "avatar/%s/%s_%s" % (username,username, filename)
 
 class ProfileManager(models.Manager):
     def toggle_follow(self, request_user, username_to_toggle):
@@ -67,6 +67,18 @@ class Profile(models.Model):
                                   fail_silently=False,
                                   html_message=html_message)
             return sent_mail
+
+            # Override save function so that I can delete images when they are UPDATED
+
+    def save(self, *args, **kwargs):
+        # Delete old file when replacing by updating the file
+        try:
+            this = Profile.objects.get(id=self.id)
+            if this.avatar != self.avatar:
+                this.avatar.delete(save=False)
+        except:
+            pass  # When new photo then we do nothing, normal case
+        super(Profile, self).save(*args, **kwargs)
 
 def post_save_user_receiver(sender, instance, created, *args, **kwargs):
     if created:

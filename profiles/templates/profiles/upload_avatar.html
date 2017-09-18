@@ -1,0 +1,21 @@
+{% extends "posts/base.html" %}
+{% block content %}
+
+
+        <div class="ag_auth_page_register">
+            <div class="input-group update_file_image_div">
+                <form class="ag_form_auth_register" method="post" enctype="multipart/form-data" action="{% url 'profiles:upload_avatar' %}">
+                    {% csrf_token %}
+                    {{ form }}
+
+                    <div class="ag_form_block_input">
+                        <div class="ag_form_inner_wrapper">
+                            <input class="ag_register_form_submit_button" type="submit" value="Confirm" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+{% endblock %}

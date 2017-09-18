@@ -1,15 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import DetailView, View
+from django.core.urlresolvers import reverse, reverse_lazy
+from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView
 from django.core import serializers
 
 from posts.models import Post
 from .models import Profile
+from .forms import ProfileForm
 
 # Create your views here.
 User = get_user_model()
@@ -69,3 +74,22 @@ def activate_user_view(request, code=None, *args, **kwargs):
                 return redirect("login")
     # invalid code
     return redirect("login")
+
+# --------------- Edit User avatar --------------- #
+@login_required()
+def upload_avatar(request):
+    instance = Profile.objects.get(user=request.user)
+    form = ProfileForm(request.POST or None, request.FILES or None, instance=instance)
+
+    if request.method == "POST":
+        if form.is_valid():
+            instance.avatar = request.FILES['avatar']
+            print instance.avatar
+            instance.save()
+            return HttpResponseRedirect(reverse('profiles:user_profile', kwargs={'username': request.user}))
+
+    context = {
+        "instance": instance,
+        "form": form
+    }
+    return render(request, 'profiles/upload_avatar.html', context)

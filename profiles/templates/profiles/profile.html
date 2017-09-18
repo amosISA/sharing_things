@@ -19,7 +19,7 @@
                                 </div>
                                 {% if user.username == request.user.username %}
                                     <!-- Button for upload the image avatar -->
-                                    <a href=""><button data-toggle="modal" data-target="#myModal" class="ag_button_upload_image_avatar">UPLOAD</button></a>
+                                    <a href="#open-modal"><button class="ag_button_upload_image_avatar">UPLOAD</button></a>
                                 {% endif %}
                             </div>
                         </div>
@@ -43,6 +43,17 @@
                 <button type="submit" class="btn btn-default" type="submit">Submit</button>
             </form>-->
 
+            <div id="open-modal" class="modal-window">
+                <div>
+                    <a href="#modal-close" title="Close" class="modal-close">Close</a>
+                    <h1>Actualiza tu avatar</h1>
+                    <div>
+                        {% if user.username == request.user.username %}
+                            <a href="{% url 'profiles:upload_avatar' %}">Modificar</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
