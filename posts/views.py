@@ -177,7 +177,6 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 
 # --------------- Delete Post --------------- #
 class PostDeleteView(LoginRequiredMixin, DeleteView):
-    print(object)
     model = Post
     success_url = reverse_lazy('posts:index')
 
@@ -187,3 +186,19 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
         if not obj.user == self.request.user:
             raise Http404
         return obj
+
+    def post(self, request, *args, **kwargs):
+        if self.request.POST.get("confirm_delete"):
+            # when confirmation page has been displayed and confirm button pressed
+            image = self.get_object().image
+            if image:
+                image.delete(save=False)
+            self.get_object().delete()
+            return HttpResponseRedirect(self.success_url)
+        elif self.request.POST.get("cancel"):
+            # when confirmation page has been displayed and cancel button pressed
+            return HttpResponseRedirect(reverse('profiles:user_profile', kwargs={'username':self.request.user}))
+        else:
+            # when data is coming from the form which lists all items
+            return self.get(self, *args, **kwargs)
+
