@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib import messages
 
@@ -177,5 +177,13 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 
 # --------------- Delete Post --------------- #
 class PostDeleteView(LoginRequiredMixin, DeleteView):
+    print(object)
     model = Post
     success_url = reverse_lazy('posts:index')
+
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        obj = super(PostDeleteView, self).get_object()
+        if not obj.user == self.request.user:
+            raise Http404
+        return obj
