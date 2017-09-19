@@ -39,6 +39,8 @@ urlpatterns = [
 
     url(r'^profile-follow/$', ProfileFollowToggle.as_view(), name='follow'),
 
+    url(r'^configuration/', views.ProfileUpdate.as_view(), name='profile_update'),
+
     url(r'^reset/password_reset', password_reset, {"template_name": "password_reset_form.html",
         "email_template_name": "password_reset_email.html"}, name="password_reset"),
     url(r'^password_reset_done', password_reset_done, {"template_name":"password_reset_done.html"},

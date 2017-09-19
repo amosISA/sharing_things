@@ -1,0 +1,79 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    {% load tags %}
+    <div class="ag_auth_page_register">
+        <form name="ag_register_form" class="ag_form_auth_register" method="post">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class="ag_form_login_message_error">
+                    {% for field in form %}
+                        {% if field.errors %}
+                            - {{ field.errors|striptags }}<br />
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="ag_form_block_input">
+                {{ form.username.label_tag }}
+                <div class="ag_form_inner_wrapper">
+                    {{ form.username|htmlattributes:"class: ag_input_form_register" }}
+                </div>
+            </div>
+
+            <div class="ag_form_block_input">
+                {{ form.email.label_tag }}
+                <div class="ag_form_inner_wrapper">
+                    {{ form.email|htmlattributes:"class: ag_input_form_register" }}
+                </div>
+            </div>
+
+            <div class="ag_form_block_input">
+                {{ form.first_name.label_tag }}
+                <div class="ag_form_inner_wrapper">
+                    {{ form.first_name|htmlattributes:"class: ag_input_form_register" }}
+                </div>
+            </div>
+
+            <div class="ag_form_block_input">
+                {{ form.last_name.label_tag }}
+                <div class="ag_form_inner_wrapper">
+                    {{ form.last_name|htmlattributes:"class: ag_input_form_register" }}
+                </div>
+            </div>
+
+            <div class="ag_form_block_input">
+                <div class="ag_form_inner_wrapper">
+                    <button class="ag_register_form_submit_button" type="submit">Guardar</button>
+                </div>
+            </div>
+
+            <div class="ag_auth_page_login_account_hint">
+                ¿Cambiar contraseña?
+                <a href="{% url 'login' %}" class="ag_auth_page_login_button">Change</a>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function() {
+            /* Remove ':' chacracter from labels */
+            labels = $(".ag_form_auth_register label");
+            labels.each(function() {
+                new_value = $(this).text().slice(0,-1);
+                $(this).text(new_value);
+                $(this).append("<span class='ag_label_span_required'>*</span>");
+            });
+
+            /* Change error list */
+            $("ul.errorlist").each(function(index){
+                $(this).appendTo($(this).parent());
+            });
+        });
+    </script>
+{% endblock %}
