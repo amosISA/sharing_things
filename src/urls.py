@@ -18,6 +18,7 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import logout_then_login, password_reset, password_reset_done, password_reset_confirm, password_reset_complete
+from django.contrib.auth import views as auth_views
 
 from . import views
 from profiles.views import ProfileFollowToggle, activate_user_view
@@ -40,6 +41,8 @@ urlpatterns = [
     url(r'^profile-follow/$', ProfileFollowToggle.as_view(), name='follow'),
 
     url(r'^configuration/', views.ProfileUpdate.as_view(), name='profile_update'),
+
+    url('^change-password/$', auth_views.password_change, {'post_change_redirect' : '/posts/'}, name='password_change'),
 
     url(r'^reset/password_reset', password_reset, {"template_name": "password_reset_form.html",
         "email_template_name": "password_reset_email.html"}, name="password_reset"),
