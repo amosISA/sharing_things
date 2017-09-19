@@ -85,7 +85,7 @@ class Post(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     post = models.ForeignKey(Post, related_name="comments")
-    content = models.TextField(help_text='La longitud máxima del comentario es de 300 caracteres', max_length=300,
+    contenido = models.TextField(help_text='La longitud máxima del comentario es de 300 caracteres', max_length=300,
                                blank=False, null=False)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     created = models.DateTimeField(auto_now=False, auto_now_add=True)
