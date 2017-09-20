@@ -56,6 +56,7 @@ class Post(models.Model):
     content = HTMLField()
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     created = models.DateTimeField(auto_now=False, auto_now_add=True)
+    users_like = models.ManyToManyField(User, related_name='posts_liked', blank=True)
 
     objects = PostManager()
 

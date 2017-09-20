@@ -10,6 +10,8 @@ urlpatterns = [
     #url(r'^edit/(?P<id>\d+)/$', views.editPost, name='edit_post'),
     #url(r'^delete/(?P<id>\d+)/$', views.deletePost, name='delete_post'),
 
+    url(r'^like/$', views.post_like, name='like'),
+
     # --- slug urls ---
     # --- function-based views ---
     #url(r'^new/$', views.newPost, name='new_post'),
