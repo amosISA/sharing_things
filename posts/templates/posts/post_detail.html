@@ -138,6 +138,31 @@
             </div>
         </div>
     </div>
+
+    <!-- Div for likes and comments -->
+    <div class="outside_likes_single_post">
+        <div class="wrapper_likes_single_post">
+            <div class="likes_single_post_action">
+
+                {% with total_likes=instance.users_like.count users_like=instance.users_like.all %}
+                    <a href="#" data-id="{{ instance.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like_button">
+
+                        <div class="likes_heart {% if request.user not in users_like %}{% else %}ag_post_likes_active{% endif %}">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <div class="number_likes_post_action">
+                                {{ total_likes }}
+                            </div>
+                        </div>
+
+                    </a>
+                {% endwith %}
+
+                <a class="comment_link" href="#id_contenido">
+                    <img src="{% static 'posts/img/icons/comment.png' %}" alt="Post comments image" />
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block js %}
@@ -154,6 +179,34 @@
                 .keyup(function() {
                     var count = $(this).val().length;
                     count > 0 ? $( ".footer_input_subm" ).removeClass( "disabled_input" ) : $( ".footer_input_subm" ).addClass( "disabled_input" )
+            });
+
+            // Ajax LIKES
+            $('a.like_button').click(function(e){
+                e.preventDefault();
+                $.post('{% url "posts:like" %}',
+                    {
+                        id: $(this).data('id'),
+                        action: $(this).data('action')
+                    },
+                    function(data) {
+                        if(data['status'] == 'ok')
+                        {
+                            var previous_action = $('a.like_button').data('action');
+
+                            //toggle data-action
+                            $('a.like_button').data('action', previous_action == 'like' ? 'unlike' : 'like');
+
+                            //toggle link text
+                            $('.likes_heart').addClass(previous_action == 'like' ? $('.likes_heart').addClass("ag_post_likes_active") : $('.likes_heart').removeClass('ag_post_likes_active'));
+
+                            //update total likes
+                            var previous_likes = parseInt($(".number_likes_post_action").text());
+                            $(".number_likes_post_action").text(previous_action == 'like' ? previous_likes + 1 : previous_likes - 1);
+                            console.log($(".number_likes_post_action").text());
+                        }
+                    }
+                );
             });
         });
     </script>

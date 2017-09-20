@@ -1286,4 +1286,85 @@ body {
     .ag_auth_page_register .update_file_image_div #id_avatar {
       margin-bottom: 20px; }
 
+/* LIKES FOR SINGLE POST */
+.outside_likes_single_post {
+  z-index: 1;
+  text-align: center;
+  position: fixed;
+  width: 180px;
+  right: 150px;
+  bottom: 40px;
+  font-size: 14px;
+  color: #666; }
+  .outside_likes_single_post .likes_single_post_action {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .outside_likes_single_post .likes_single_post_action .likes_heart {
+      font-size: 14px;
+      height: 30px;
+      min-height: 0;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: #fff;
+      color: #ff6671;
+      border: 1px solid #ff6671;
+      text-shadow: none;
+      box-shadow: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .1s ease-out;
+      text-decoration: none;
+      text-transform: uppercase; }
+      .outside_likes_single_post .likes_single_post_action .likes_heart .fa {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased; }
+      .outside_likes_single_post .likes_single_post_action .likes_heart .number_likes_post_action {
+        margin-left: 4px;
+        color: #666; }
+    .outside_likes_single_post .likes_single_post_action .ag_post_likes_active {
+      color: #fff;
+      background-color: #f66;
+      border-color: #f66; }
+      .outside_likes_single_post .likes_single_post_action .ag_post_likes_active:hover {
+        opacity: .8;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        text-decoration: none; }
+      .outside_likes_single_post .likes_single_post_action .ag_post_likes_active i.fa {
+        display: inline-block;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased; }
+      .outside_likes_single_post .likes_single_post_action .ag_post_likes_active .number_likes_post_action {
+        color: #fff; }
+    .outside_likes_single_post .likes_single_post_action .comment_link {
+      opacity: 1;
+      margin-left: 12px;
+      height: 36px;
+      line-height: 36px;
+      border-radius: 100px;
+      width: auto;
+      padding: 5px 12px;
+      background: #dedbdb;
+      color: #333;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      font-size: 13px;
+      text-align: center;
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .1s ease-out;
+      text-decoration: none;
+      text-transform: uppercase; }
+      .outside_likes_single_post .likes_single_post_action .comment_link img {
+        height: 16px;
+        border: none; }
+
 /*# sourceMappingURL=base.css.map */

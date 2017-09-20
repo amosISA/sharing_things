@@ -51,16 +51,14 @@
                         </div>
                         <div class="row ag_post_footer">
                             {% with total_likes=item.users_like.count users_like=item.users_like.all %}
-                                <a href="#" data-id="{{ item.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like_button">
 
-                                    <div class="ag_post_likes {% if request.user not in users_like %}{% else %}ag_post_likes_active{% endif %}">
-                                        <i class="fa fa-heart" aria-hidden="true"></i>
-                                        <div class="ag_div_likes_number">
-                                            {{ total_likes }}
-                                        </div>
+                                <div class="ag_post_likes">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                    <div class="ag_div_likes_number">
+                                        {{ total_likes }}
                                     </div>
+                                </div>
 
-                                </a>
                             {% endwith %}
                             <a href="{{ item.get_absolute_url }}" class="ag_post_comments" target="_blank">
                                 <img class="ag_posts_comment_image" src="{% static 'posts/img/icons/comment.png' %}" alt="Post comments image" />
@@ -89,36 +87,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block js %}
-    <script>
-        $(document).ready(function(){
-            $('a.like_button').click(function(e){
-                e.preventDefault();
-                $.post('{% url "posts:like" %}',
-                    {
-                        id: $(this).data('id'),
-                        action: $(this).data('action')
-                    },
-                    function(data) {
-                        if(data['status'] == 'ok')
-                        {
-                            var previous_action = $('a.like_button').data('action');
-
-                            //toggle data-action
-                            $('a.like_button').data('action', previous_action == 'like' ? 'unlike' : 'like');
-
-                            //toggle link text
-                            $('.ag_post_likes').addClass(previous_action == 'like' ? $('.ag_post_likes').addClass("ag_post_likes_active") : $('.ag_post_likes').removeClass('ag_post_likes_active'));
-
-                            //update total likes
-                            var previous_likes = parseInt($(".ag_div_likes_number").text());
-                            $(".ag_div_likes_number").text(previous_action == 'like' ? previous_likes + 1 : previous_likes - 1);
-                        }
-                    }
-                );
-            });
-        });
-    </script>
 {% endblock %}
