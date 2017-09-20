@@ -30,7 +30,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ request.user.get_full_name|title }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{% url "profiles:user_profile" username=user.username %}">
+                                <a href="{% url "profiles:user_profile" username=request.user.username %}">
                                     Perfil
                                     <i style="float:right;" class="fa fa-user"></i>
                                 </a>

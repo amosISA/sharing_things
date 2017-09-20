@@ -307,6 +307,82 @@ body {
                 .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_reply_form .reply_form_inputs .reply_footer .footer_actions .disabled_input {
                   opacity: .4;
                   cursor: not-allowed; }
+        .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments {
+          display: flex;
+          padding: 1em 0; }
+          .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments a {
+            text-decoration: none;
+            cursor: pointer; }
+            .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments a .comment_comment_avatar {
+              display: inline-block;
+              position: relative;
+              width: 40px;
+              height: 40px; }
+              .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments a .comment_comment_avatar .comment_comment_avatar_image {
+                position: absolute;
+                border-radius: 50%;
+                left: 0;
+                top: 0;
+                background-size: cover;
+                background-position: 50%;
+                width: 100%;
+                height: 100%; }
+          .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body {
+            margin-left: 1em;
+            flex: 1; }
+            .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_body_info {
+              display: flex; }
+              .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_body_info .comment_name_user {
+                display: flex;
+                color: #4b4b4b;
+                font-weight: bold;
+                font-size: 14px; }
+                .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_body_info .comment_name_user a {
+                  color: #4b4b4b;
+                  text-decoration: none;
+                  cursor: pointer; }
+                  .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_body_info .comment_name_user a:hover {
+                    text-decoration: underline; }
+              .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_body_info .comment_timestamp {
+                margin-left: .8em;
+                color: #999;
+                font-size: .8em;
+                display: flex; }
+            .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .comment_comment_content {
+              color: #222;
+              word-break: break-word;
+              font-size: 1.1em;
+              line-height: 30px;
+              position: relative; }
+              .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .comment_comment_content p {
+                margin-bottom: 1em; }
+            .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_footer_actions {
+              display: flex;
+              align-items: center;
+              font-size: .8em;
+              color: #aaa;
+              height: 18px; }
+              .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_footer_actions .footer_action_like {
+                cursor: pointer;
+                display: flex;
+                align-items: center; }
+                .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_footer_actions .footer_action_like i {
+                  color: rgba(255, 140, 72, 0.7);
+                  font-size: 14px;
+                  display: inline-block;
+                  font: normal normal normal 14px/1 FontAwesome; }
+                  .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_footer_actions .footer_action_like i:hover {
+                    color: red; }
+                .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_footer_actions .footer_action_like .count_heart_likes {
+                  margin-left: 4px; }
+              .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_footer_actions .footer_action_reply {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                margin-left: 1em; }
+                .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_comments .article_comments_comments_body .article_comments_comments_body_container .article_comments_comments_footer_actions .footer_action_reply:hover {
+                  color: #888;
+                  cursor: pointer; }
   .ag_post_article_detail .ag_article_header {
     margin-bottom: .5em;
     margin-top: 2em; }

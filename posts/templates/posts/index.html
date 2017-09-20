@@ -54,8 +54,9 @@
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                                 <div class="ag_div_likes_number">1</div>
                             </div>
-                            <a href="" class="ag_post_comments" target="_blank">
+                            <a href="{{ item.get_absolute_url }}" class="ag_post_comments" target="_blank">
                                 <img class="ag_posts_comment_image" src="{% static 'posts/img/icons/comment.png' %}" alt="Post comments image" />
+                                {{ item.comments.count }}
                             </a>
                         </div>
                     </div>

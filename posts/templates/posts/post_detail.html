@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="ag_article_header col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2">
                     <div class="ag_article_name_poster">
-                        <a href="{% url "profiles:user_profile" username=user.username %}">
+                        <a href="{% url "profiles:user_profile" username=instance.user.username %}">
                             <div class="ag_article_avatar_image_user">
                                 <div class="ag_article_div_image" style="{% if instance.user.profile.avatar %}background-image: url('{{ instance.user.profile.avatar.url }}');{% else %}background-image: url('{% static 'posts/img/favicon/fav.png' %}');{% endif %}"></div>
                             </div>
@@ -53,68 +53,86 @@
                     <div class="ag_comments_container">
                         <div class="article_comments_thread">
                             <!-- HEAD -->
-                            <div class="article_comments_header">
-                                <img src="{% static 'posts/img/icons/comment.png' %}" alt="Post comments image" />
-                                {% with comments.count as total_comments %}
-                                    {% if total_comments == 0 %}
-                                        Sé el primero en compartir tu opinión
-                                    {% else %}
-                                        {{ total_comments }} Comentario{{ total_comments|pluralize }}
-                                    {% endif %}
-                                {% endwith %}
-                            </div>
+                            {% if request.user.is_authenticated %}
+                                <div class="article_comments_header">
+                                    <img src="{% static 'posts/img/icons/comment.png' %}" alt="Post comments image" />
+                                    {% with comments.count as total_comments %}
+                                        {% if total_comments == 0 %}
+                                            Sé el primero en compartir tu opinión
+                                        {% else %}
+                                            {{ total_comments }} Comentario{{ total_comments|pluralize }}
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
 
-                            <!-- FORM -->
-                            <div class="article_reply_form">
-                                <div class="reply_form_avatar">
-                                    <div class="reply_form_avatar_image" style="{% if instance.user.profile.avatar %}background-image: url('{{ instance.user.profile.avatar.url }}');{% else %}background-image: url('{% static 'posts/img/favicon/fav.png' %}');{% endif %}">
+                                <!-- FORM -->
+                                <div class="article_reply_form">
+                                    <div class="reply_form_avatar">
+                                        <div class="reply_form_avatar_image" style="{% if user.profile.avatar %}background-image: url('{{ user.profile.avatar.url }}');{% else %}background-image: url('{% static 'posts/img/favicon/fav.png' %}');{% endif %}">
+                                        </div>
+                                    </div>
+                                    <div class="reply_form_inputs">
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <textarea name="contenido" id="id_contenido" required="" placeholder="Deja un comentario" rows="2" maxlength="300"></textarea>
+
+                                            <div class="reply_footer">
+                                                <div class="footer_hint">La longitud máxima del comentario es de 300 caracteres</div>
+                                                <div class="footer_actions">
+                                                    <input class="footer_input_subm disabled_input" type="submit" value="Enviar" />
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="reply_form_inputs">
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        <textarea name="contenido" id="id_contenido" required="" placeholder="Deja un comentario" rows="2" maxlength="300"></textarea>
-
-                                        <div class="reply_footer">
-                                            <div class="footer_hint">La longitud máxima del comentario es de 300 caracteres</div>
-                                            <div class="footer_actions">
-                                                <input class="footer_input_subm disabled_input" type="submit" value="Enviar" />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                            {% endif %}
 
                             <!-- USER COMMENTS -->
-                            
-                            <form method="post">{% csrf_token %}
-                                {{ comment_form }}
-                                <input type="submit" />
-                            </form>
+                            {% for comment in comments %}
+
+                                <div class="article_comments_comments">
+                                    <a href="{% url "profiles:user_profile" username=comment.user.username %}">
+                                        <div class="comment_comment_avatar">
+                                            <div class="comment_comment_avatar_image" style="{% if comment.user.profile.avatar %}background-image: url('{{ comment.user.profile.avatar.url }}');{% else %}background-image: url('{% static 'posts/img/favicon/fav.png' %}');{% endif %}">
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <!-- Body comment -->
+                                    <div class="article_comments_comments_body">
+                                        <div class="article_comments_comments_body_container">
+                                            <div class="article_comments_comments_body_info">
+                                                <div class="comment_name_user">
+                                                    <a href="{% url "profiles:user_profile" username=comment.user.username %}">{{ comment.user.get_full_name|title }}</a>
+                                                </div>
+                                                <div class="comment_timestamp">{{ comment.created|timesince }}</div>
+                                            </div>
+
+                                            <div>
+                                                <div class="comment_comment_content">
+                                                    <div>
+                                                        <p>{{ comment.contenido|linebreaks }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="article_comments_comments_footer_actions">
+                                                <div class="footer_action_like">
+                                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                                    <div class="count_heart_likes">2</div>
+                                                </div>
+                                                <div class="footer_action_reply">
+                                                    Reply
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- DISPLAY COMMENTS -->
-            <div class="row">
-                {% with comments.count as total_comments %}
-                    <h2>
-                        {{ total_comments }} comment{{ total_comments|pluralize }}
-                    </h2>
-                {% endwith %}
-
-                {% for comment in comments %}
-                    <div class="comment">
-                        <p class="info">
-                            Comment {{ forloop.counter }} by {{ comment.user.username }}
-                            {{ comment.created }}
-                        </p>
-                        {{ comment.contenido|linebreaks }}
-                    </div>
-                {% empty %}
-                    <p>There are no comments yet.</p>
-                {% endfor %}
             </div>
         </div>
     </div>
