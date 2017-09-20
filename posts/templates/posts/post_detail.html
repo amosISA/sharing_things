@@ -46,9 +46,50 @@
                     {{ instance.content|safe }}
                 </div>
             </div>
+
+            <!-- FORM FOR COMMENTS -->
             <div class="row">
-                {{ comment_form }}
-                <input type="submit" />
+                <div class="ag_article_comments_wrapper col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2">
+                    <div class="ag_comments_container">
+                        <div class="article_comments_thread">
+                            <div class="article_comments_header">
+                                <img src="{% static 'posts/img/icons/comment.png' %}" alt="Post comments image" />
+                                {% with comments.count as total_comments %}
+                                    {% if total_comments == 0 %}
+                                        Sé el primero en compartir tu opinión
+                                    {% else %}
+                                        {{ total_comments }} Comentario{{ total_comments|pluralize }}
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+                            <form method="post">{% csrf_token %}
+                                {{ comment_form }}
+                                <input type="submit" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DISPLAY COMMENTS -->
+            <div class="row">
+                {% with comments.count as total_comments %}
+                    <h2>
+                        {{ total_comments }} comment{{ total_comments|pluralize }}
+                    </h2>
+                {% endwith %}
+
+                {% for comment in comments %}
+                    <div class="comment">
+                        <p class="info">
+                            Comment {{ forloop.counter }} by {{ comment.user.username }}
+                            {{ comment.created }}
+                        </p>
+                        {{ comment.contenido|linebreaks }}
+                    </div>
+                {% empty %}
+                    <p>There are no comments yet.</p>
+                {% endfor %}
             </div>
         </div>
     </div>

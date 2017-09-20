@@ -210,9 +210,33 @@ body {
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* Comments wrapper */
   /* Header of detail post */
   /* Image of detail post */
   /* Content wrapper */ }
+  .ag_post_article_detail .ag_article_comments_wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 720px;
+    /*margin: 0 auto;*/
+    position: relative; }
+    .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container {
+      flex-direction: column;
+      flex: 1;
+      margin-bottom: 3em;
+      background: #fff;
+      color: #333;
+      font-size: 16px; }
+      .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread {
+        margin-top: 2em; }
+        .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_header {
+          margin-bottom: 1.5em;
+          display: flex;
+          align-items: center; }
+          .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_comments_header img {
+            width: 18px;
+            margin-right: .5em; }
   .ag_post_article_detail .ag_article_header {
     margin-bottom: .5em;
     margin-top: 2em; }
