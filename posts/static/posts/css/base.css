@@ -294,6 +294,9 @@ body {
                 display: flex;
                 align-items: center;
                 color: #888; }
+              @media (max-width: 640px) {
+                .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_reply_form .reply_form_inputs .reply_footer .footer_hint {
+                  display: none; } }
               .ag_post_article_detail .ag_article_comments_wrapper .ag_comments_container .article_comments_thread .article_reply_form .reply_form_inputs .reply_footer .footer_actions {
                 display: flex;
                 justify-content: flex-end;
@@ -1296,6 +1299,35 @@ body {
   bottom: 40px;
   font-size: 14px;
   color: #666; }
+  .outside_likes_single_post .likes_single_post_engager {
+    opacity: 0;
+    transition: opacity .4s ease-in;
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+    .outside_likes_single_post .likes_single_post_engager .engager_avatar_img {
+      display: none;
+      position: relative;
+      width: 40px;
+      height: 40px; }
+      .outside_likes_single_post .likes_single_post_engager .engager_avatar_img .avatar_img_eng {
+        position: absolute;
+        border-radius: 50%;
+        left: 0;
+        top: 0;
+        background-size: cover;
+        background-position: 50%;
+        width: 100%;
+        height: 100%; }
+    .outside_likes_single_post .likes_single_post_engager .engager_hint_text {
+      display: none; }
+      .outside_likes_single_post .likes_single_post_engager .engager_hint_text .eng_title {
+        color: #333;
+        margin-bottom: 4px;
+        font-weight: bold; }
+      .outside_likes_single_post .likes_single_post_engager .engager_hint_text strong {
+        font-size: 1em;
+        color: #333; }
   .outside_likes_single_post .likes_single_post_action {
     display: flex;
     align-items: center;
@@ -1366,5 +1398,49 @@ body {
       .outside_likes_single_post .likes_single_post_action .comment_link img {
         height: 16px;
         border: none; }
+
+@media (max-width: 1150px) {
+  .outside_likes_single_post {
+    display: flex !important;
+    z-index: 1;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #f9fbfb;
+    box-shadow: 0 -10px 16px 0 rgba(0, 0, 0, 0.1);
+    width: 100%; }
+    .outside_likes_single_post .wrapper_likes_single_post {
+      width: 90%;
+      max-width: 760px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: .6em auto; }
+      .outside_likes_single_post .wrapper_likes_single_post .likes_single_post_engager {
+        opacity: 1;
+        flex-direction: row;
+        transform: translateY(0); }
+        .outside_likes_single_post .wrapper_likes_single_post .likes_single_post_engager .engager_avatar_img {
+          margin-bottom: 0;
+          display: inline-block;
+          margin-right: 10px; }
+          .outside_likes_single_post .wrapper_likes_single_post .likes_single_post_engager .engager_avatar_img .avatar_img_eng {
+            margin-bottom: 0; }
+        .outside_likes_single_post .wrapper_likes_single_post .likes_single_post_engager .engager_hint_text {
+          margin-bottom: 0;
+          display: block; }
+          .outside_likes_single_post .wrapper_likes_single_post .likes_single_post_engager .engager_hint_text .eng_title {
+            margin-right: 4px;
+            text-align: left; }
+          .outside_likes_single_post .wrapper_likes_single_post .likes_single_post_engager .engager_hint_text p {
+            margin-bottom: 0; } }
+        @media (max-width: 1150px) and (max-width: 640px) {
+          .outside_likes_single_post .wrapper_likes_single_post .likes_single_post_engager .engager_hint_text p {
+            display: none; } }
+@media (max-width: 1150px) {
+      .outside_likes_single_post .wrapper_likes_single_post .likes_single_post_action {
+        justify-content: flex-end; }
+        .outside_likes_single_post .wrapper_likes_single_post .likes_single_post_action .comment_link {
+          display: flex; } }
 
 /*# sourceMappingURL=base.css.map */

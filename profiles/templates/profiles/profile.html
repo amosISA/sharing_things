@@ -86,10 +86,12 @@
                             <div class="ag_prof_inner_user_options">
                                 <div class="user_options_like_comment">
                                     <div class="user_options_del_edit">
-                                        <div class="user_opt_likes">
-                                            <i class="fa fa-heart" aria-hidden="true"></i>
-                                            <span class="ag_div_likes_number">1</span>
-                                        </div>
+                                        {% with total_likes=post.users_like.count users_like=post.users_like.all %}
+                                            <div class="user_opt_likes">
+                                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                                <span class="ag_div_likes_number">{{ total_likes }}</span>
+                                            </div>
+                                        {% endwith %}
                                         <div class="user_opt_comments">
                                             <img class="ag_posts_comment_image" src="{% static 'posts/img/icons/comment.png' %}" alt="Post comments image" />
                                             <span>{{ post.comments.count }}</span>

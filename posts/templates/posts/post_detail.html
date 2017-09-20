@@ -49,7 +49,7 @@
 
             <!-- FORM FOR COMMENTS -->
             <div class="row">
-                <div class="ag_article_comments_wrapper col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2">
+                <div class="ag_article_comments_wrapper col-xs-8 col-xs-offset-1 col-md-8 col-md-offset-1">
                     <div class="ag_comments_container">
                         <div class="article_comments_thread">
                             <!-- HEAD -->
@@ -142,6 +142,15 @@
     <!-- Div for likes and comments -->
     <div class="outside_likes_single_post">
         <div class="wrapper_likes_single_post">
+            <div class="likes_single_post_engager">
+                <div class="engager_avatar_img">
+                    <div class="avatar_img_eng" style="{% if instance.user.profile.avatar %}background-image: url('{{ instance.user.profile.avatar.url }}');{% else %}background-image: url('{% static 'posts/img/favicon/fav.png' %}');{% endif %}"></div>
+                </div>
+                <div class="engager_hint_text">
+                    <div class="eng_title">Enjoy this post?</div>
+                    <p>Deja un like y un comentario para <strong>{{ instance.user.username|title }}</strong></p>
+                </div>
+            </div>
             <div class="likes_single_post_action">
 
                 {% with total_likes=instance.users_like.count users_like=instance.users_like.all %}
