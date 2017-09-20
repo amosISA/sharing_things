@@ -338,6 +338,98 @@ body {
             margin-right: .5em;
           }
         }
+
+        .article_reply_form {
+          display: flex;
+          margin-bottom: 1em;
+
+          .reply_form_avatar {
+            margin-top: 5px;
+            display: inline-block;
+            position: relative;
+            width: 40px;
+            height: 40px;
+
+            .reply_form_avatar_image {
+              position: absolute;
+              border-radius: 50%;
+              left: 0;
+              top: 0;
+              background-size: cover;
+              background-position: 50%;
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .reply_form_inputs {
+            flex: 1;
+            margin-left: .8em;
+
+            textarea {
+              overflow: hidden;
+              word-wrap: break-word;
+              height: 71px;
+              padding: 1em 1.2em;
+              border-radius: 3px;
+              background-color: #fafbfc;
+              border: solid 1px #efefef;
+              resize: none !important;
+              width: 100%;
+              line-height: 20px;
+            }
+
+            .reply_footer {
+              display: none;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 8px;
+
+              .footer_hint {
+                font-size: .8em;
+                display: flex;
+                align-items: center;
+                color: #888;
+              }
+
+              .footer_actions {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                input {
+                  background-color: #00b5e2;
+                  border: none;
+                  color: #fff;
+                  cursor: pointer;
+                  font-size: 13px;
+                  text-align: center;
+                  padding: 0;
+                  width: 90px;
+                  min-height: 34px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-radius: 2px;
+                  transition: all .1s ease-out;
+                  text-decoration: none;
+                  text-transform: uppercase;
+
+                  &:hover {
+                    background: #00a3cb;
+                    box-shadow: none;
+                    text-decoration: none;
+                  }
+                }
+
+                .disabled_input {
+                  opacity: .4;
+                  cursor: not-allowed;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
