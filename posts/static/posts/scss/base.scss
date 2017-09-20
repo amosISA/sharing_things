@@ -234,6 +234,27 @@ body {
           }
         }
 
+        .ag_post_likes_active {
+          color: #fff;
+          background-color: #f66;
+          border-color: #f66;
+
+          &:hover {
+            opacity: .8;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-decoration: none;
+          }
+
+          i.fa {
+            display: inline-block;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+          }
+
+          .ag_div_likes_number {color: #fff;}
+        }
+
         .ag_post_comments {
           opacity: .8;
           color: #999;

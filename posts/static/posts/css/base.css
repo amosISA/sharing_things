@@ -158,6 +158,21 @@ body {
             font-size: inherit;
             text-rendering: auto;
             -webkit-font-smoothing: antialiased; }
+        .ag_posts_wrapper .ag_post_article .ag_post_right .ag_post_footer .ag_post_likes_active {
+          color: #fff;
+          background-color: #f66;
+          border-color: #f66; }
+          .ag_posts_wrapper .ag_post_article .ag_post_right .ag_post_footer .ag_post_likes_active:hover {
+            opacity: .8;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-decoration: none; }
+          .ag_posts_wrapper .ag_post_article .ag_post_right .ag_post_footer .ag_post_likes_active i.fa {
+            display: inline-block;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased; }
+          .ag_posts_wrapper .ag_post_article .ag_post_right .ag_post_footer .ag_post_likes_active .ag_div_likes_number {
+            color: #fff; }
         .ag_posts_wrapper .ag_post_article .ag_post_right .ag_post_footer .ag_post_comments {
           opacity: .8;
           color: #999;
