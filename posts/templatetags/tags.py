@@ -26,3 +26,9 @@ def htmlattributes(value, arg):
     return rendered
 
 register.filter('htmlattributes', htmlattributes)
+
+# I use this for debugging objects into the templates
+def debug_object_dump(var):
+    return vars(var)
+
+register.filter('debug_object_dump', debug_object_dump)
