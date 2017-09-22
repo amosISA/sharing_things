@@ -19,6 +19,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
+# --------------- View for posts likes --------------- #
 @login_required
 @require_POST
 def post_like(request):
@@ -44,7 +45,7 @@ def post_like(request):
 # --------------- List All Posts --------------- #
 def index(request):
     queryset_list = Post.objects.all() #.order_by("-created")
-    paginator = Paginator(queryset_list, 3)  # Show 3 posts per page
+    paginator = Paginator(queryset_list, 2)  # Show 3 posts per page
 
     queryset = request.GET.get('page')
     try:
@@ -53,8 +54,17 @@ def index(request):
         # If page is not an integer, deliver first page.
         queryset = paginator.page(1)
     except EmptyPage:
+        if request.is_ajax():
+            # If the request is AJAX and the page is out of range
+            #  return an empty page
+            return HttpResponse('')
         # If page is out of range (e.g. 9999), deliver last page of results.
         queryset = paginator.page(paginator.num_pages)
+
+    if request.is_ajax():
+        return render(request,
+                      'posts/list_ajax.html',
+                      {'object_list': queryset, 'user': request.user})
 
     context = {
         'object_list': queryset,

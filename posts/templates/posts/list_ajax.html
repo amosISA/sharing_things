@@ -1,0 +1,65 @@
+{% for item in object_list %}
+    <div class="row ag_post_article">
+        <div class="ag_post_left col-md-2">
+            {% load staticfiles %}
+            <div class="ag_post_avatar">
+                <!-- Tiene que ser 40x40px -->
+                {% if item.user.profile.avatar %}
+                    <img class="ag_post_avatar_img" src="{{ item.user.profile.avatar.url }}" alt="User Avatar" />
+                {% else %}
+                    <img class="ag_post_avatar_img" src="{% static 'posts/img/favicon/fav.png' %}" alt="User Avatar" />
+                {% endif %}
+            </div>
+        </div>
+        <div class="ag_post_right col-md-10">
+            <div class="row ag_post_header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="ag_post_user_name" href="/profile/{{ item.user.username }}/">{{ item.user.get_full_name|title }}</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ag_post_createdAt">
+                            {{ item.created|timesince }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ag_post_body">
+                {# href="{% url "posts:detail_post" slug=item.slug %}" #}
+                <a class="ag_post_link_content" href="{{ item.get_absolute_url }}" target="_blank">
+                    <h5 class="ag_post_title">{{ item.title }}</h5>
+                    <div class="row ag_post_content">
+                        {{ item.content|truncatewords:50|safe }}
+                    </div>
+                    {% if item.image %}
+                        <div class="wrapper_div_image">
+                            <div class="row ag_post_image_div">
+                                <div class="ag_post_image_div_progressive">
+                                    <img class="ag_post_img img-responsive" src="{{ item.image.url }}" alt="Post image" />
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </a>
+            </div>
+            <div class="row ag_post_footer">
+                {% with total_likes=item.users_like.count users_like=item.users_like.all %}
+
+                    <div class="ag_post_likes {% if request.user not in users_like %}{% else %}ag_post_likes_active{% endif %}">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <div class="ag_div_likes_number">
+                            {{ total_likes }}
+                        </div>
+                    </div>
+
+                {% endwith %}
+                <a href="{{ item.get_absolute_url }}" class="ag_post_comments" target="_blank">
+                    <img class="ag_posts_comment_image" src="{% static 'posts/img/icons/comment.png' %}" alt="Post comments image" />
+                    {{ item.comments.count }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
