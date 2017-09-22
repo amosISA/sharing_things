@@ -45,7 +45,7 @@ def post_like(request):
 # --------------- List All Posts --------------- #
 def index(request):
     queryset_list = Post.objects.all() #.order_by("-created")
-    paginator = Paginator(queryset_list, 2)  # Show 3 posts per page
+    paginator = Paginator(queryset_list, 4)  # Show 3 posts per page
 
     queryset = request.GET.get('page')
     try:
