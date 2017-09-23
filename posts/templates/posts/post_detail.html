@@ -177,6 +177,11 @@
 {% block js %}
     <script>
         $(document).ready(function(){
+            // When user click on the comment icon show also the submit button for comments
+            $(".comment_link").click(function(){
+                $(".reply_form_inputs .reply_footer").css("display", "flex");
+            });
+
             $("#id_contenido")
                 .click(function() {
                     $(".reply_footer").show();
