@@ -86,6 +86,26 @@ def getPostBySlug(request, slug=None):
 
     # List of active comments for this post
     comments = instance.comments.filter(active=True)
+    paginator = Paginator(comments, 4)
+    queryset = request.GET.get('page')
+
+    try:
+        queryset = paginator.page(queryset)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        queryset = paginator.page(1)
+    except EmptyPage:
+        if request.is_ajax():
+            # If the request is AJAX and the page is out of range
+            #  return an empty page
+            return HttpResponse('')
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        queryset = paginator.page(paginator.num_pages)
+
+    if request.is_ajax():
+        return render(request,
+                      'posts/list_comments_ajax.html',
+                      {'instance': instance, 'comments': queryset})
 
     if request.method == 'POST':
         #  A comment was posted
@@ -103,7 +123,7 @@ def getPostBySlug(request, slug=None):
         comment_form = CommentForm()
     context = {
         'instance': instance,
-        'comments': comments,
+        'comments': queryset,
         'comment_form': comment_form
     }
     return render(request, 'posts/post_detail.html', context)
