@@ -47,12 +47,14 @@
             <div class="row ag_post_footer">
                 {% with total_likes=item.users_like.count users_like=item.users_like.all %}
 
+                    <a href="{{ item.get_absolute_url }}" target="_blank">
                     <div class="ag_post_likes {% if request.user not in users_like %}{% else %}ag_post_likes_active{% endif %}">
                         <i class="fa fa-heart" aria-hidden="true"></i>
                         <div class="ag_div_likes_number">
                             {{ total_likes }}
                         </div>
                     </div>
+                    </a>
 
                 {% endwith %}
                 <a href="{{ item.get_absolute_url }}" class="ag_post_comments" target="_blank">
