@@ -61,12 +61,56 @@
             <div class="row">
                 <div class="ag_profile_block_posts_by_content col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
                     <div class="ag_profile_block_posts_by_content_inner">
-                        Para poder ver los posts favoritos de este usuario debes <a href="/profile/{{ user.username }}/"> seguirle</a>
+                        Para poder ver los posts favoritos de este usuario debes <a class="follow_user_favourites" href="/profile/{{ user.username }}/"> seguirle</a>
                     </div>
                 </div>
             </div>
 
         {% endif %}
+
+    {% else %}
+
+        {% if settings %}
+            {% for post in settings %}
+
+                <div class="row">
+                    <div class="ag_profile_block_posts_by_content col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                        <div class="ag_profile_block_posts_by_content_inner">
+                            {% if post.image %}
+                                <div style="background-image: url('{{ post.image.url }}');" class="ag_prof_inner_image"></div>
+                            {% endif %}
+                            <div class="ag_prof_inner_content">
+                                <div class="ag_prof_inner_title_post">
+                                    {{ post.title }}
+                                </div>
+                                <div class="ag_prof_inner_content_post">
+                                    {{ post.content|truncatewords:20|safe }}
+                                </div>
+                                <a class="ag_prof_inner_link" href="{{ post.get_absolute_url }}"></a>
+                                <div class="ag_prof_inner_user_options">
+                                    <div class="user_options_like_comment">
+                                        <div class="user_options_del_edit">
+                                            {% with total_likes=post.users_like.count users_like=post.users_like.all %}
+                                                <div class="user_opt_likes">
+                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                    <span class="ag_div_likes_number">{{ total_likes }}</span>
+                                                </div>
+                                            {% endwith %}
+                                            <div class="user_opt_comments">
+                                                <img class="ag_posts_comment_image" src="{% static 'posts/img/icons/comment.png' %}" alt="Post comments image" />
+                                                <span>{{ post.comments.count }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        {% endif %}
+
     {% endif %}
 
 
