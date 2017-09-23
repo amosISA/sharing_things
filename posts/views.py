@@ -105,7 +105,7 @@ def getPostBySlug(request, slug=None):
     if request.is_ajax():
         return render(request,
                       'posts/list_comments_ajax.html',
-                      {'instance': instance, 'comments': queryset})
+                      {'comments': queryset})
 
     if request.method == 'POST':
         #  A comment was posted
