@@ -60,7 +60,6 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 
 # User likes
 class UserLikesDetailView(LoginRequiredMixin, DetailView):
-    context_object_name = 'instance'
     queryset = Post.objects.all()
     template_name = 'profiles/profile_likes.html'
 
@@ -73,7 +72,10 @@ class UserLikesDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(UserLikesDetailView, self).get_context_data(*args, **kwargs)
-        qs = Post.objects.all()
+        user = context['user']
+
+        # Filter only the posts that the request.user like
+        qs = Post.objects.filter(users_like__in=[user])
 
         if qs.exists():
             context['settings'] = qs
