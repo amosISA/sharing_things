@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.conf import settings
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 
 from .utils import code_generator
 User = settings.AUTH_USER_MODEL
@@ -49,6 +50,7 @@ class Profile(models.Model):
         return self.user.username
 
     def send_activation_email(self):
+        current_site = Site.objects.get_current().domain
         if not self.activated:
             self.activation_key = code_generator()
             self.save()
@@ -59,7 +61,7 @@ class Profile(models.Model):
             from_email = settings.DEFAULT_FROM_EMAIL
             message = "Activa tu cuenta aquí: {}".format(path_)
             recipient_list = [self.user.email, ]
-            html_message = "<p>Activa tu cuenta aquí: {}</p>".format(path_)
+            html_message = "<p>Activa tu cuenta aquí: <a href='http://{}{}'>Activation link</a></p>".format(current_site, path_)
             sent_mail = send_mail(subject,
                                   message,
                                   from_email,
@@ -68,8 +70,7 @@ class Profile(models.Model):
                                   html_message=html_message)
             return sent_mail
 
-            # Override save function so that I can delete images when they are UPDATED
-
+    # Override save function so that I can delete images when they are UPDATED
     def save(self, *args, **kwargs):
         # Delete old file when replacing by updating the file
         try:

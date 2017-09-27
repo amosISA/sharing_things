@@ -15,6 +15,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.db.models import Q
 
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
@@ -41,6 +42,31 @@ def post_like(request):
 #--------------------------------------------------------------------#
 ##------------------------- FUNCTION-BASED VIEWS ---------------------##
 #--------------------------------------------------------------------#
+# --------------- Global Search index --------------- #
+def global_search(request):
+    if request.method == 'POST':
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+
+    posts = Post.objects.filter(
+                Q(title__icontains=search_text)|
+                Q(content__icontains=search_text)|
+                Q(title__iexact=search_text)|
+                Q(content__iexact=search_text)|
+                Q(user__username__icontains=search_text)|
+                Q(user__username__iexact=search_text)|
+                Q(user__first_name__icontains=search_text)|
+                Q(user__first_name__iexact=search_text)|
+                Q(user__last_name__icontains=search_text)|
+                Q(user__last_name__iexact=search_text)
+            )
+
+    context = {
+        'posts': posts
+    }
+
+    return render(request, 'posts/ajax_search.html', context)
 
 # --------------- List All Posts --------------- #
 def index(request):
@@ -70,6 +96,7 @@ def index(request):
         'object_list': queryset,
         'user': request.user
     }
+
     return render(request, 'posts/index.html', context)
 
 # --------------- Get Post By Id --------------- #

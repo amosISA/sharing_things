@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     'tinymce',
     'profiles',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

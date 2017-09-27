@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     # --- index ---
     url(r'^$', views.index, name='index'),
+    url(r'^global_search/$', views.global_search, name='global_search'),
 
     # --- normal urls, with id ---
     #url(r'^(?P<id>\d+)/$', views.getPostById, name='detail_post'),

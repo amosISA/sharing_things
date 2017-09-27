@@ -21,7 +21,7 @@
             <!-- Buscador solo aparece cuando esta en inicio -->
             {% if request.path == '/posts/' %}
                 <div class="ag_wrapper_general_form_search col-sm-3 col-md-3">
-                    <form class="search_form_navbar" method="GET">
+                    <form class="search_form_navbar" method="POST">
                         <input style="background-image: url('{% static 'posts/img/icons/searchicon.png' %}');" type="text" class="ag_navbar_search_input" placeholder="Buscar" name="q">
                     </form>
                 </div>

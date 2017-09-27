@@ -5,6 +5,7 @@
         <div class="ag_posts_wrapper col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
 
             {% include "posts/list_ajax.html" %}
+            {% include "posts/ajax_search.html" %}
 
             <!-- Pagination
             <div class="pagination ag_pagination">
@@ -29,6 +30,7 @@
 {% block js %}
     <script>
         $(document).ready(function(){
+             //Pagination ajax
              var page = 1;
              var empty_page = false;
              var block_request = false;
@@ -50,6 +52,26 @@
                      });
                  }
              });
+
+            search_url = '{% url "posts:global_search" %}';
+            // Global search ajax
+            $(".ag_navbar_search_input").keyup(function(){
+
+                $.ajax({
+                    type: "POST",
+                    url: search_url,
+                    data: {
+                        'search_text': $(".ag_navbar_search_input").val()
+                    },
+                    success: searchSuccess,
+                    dataType: 'html'
+                });
+
+            });
         });
+
+        function searchSuccess(data, textStatus, jqXHR) {
+            $('.ag_posts_wrapper').html(data);
+        }
     </script>
 {% endblock %}
