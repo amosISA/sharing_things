@@ -144,6 +144,7 @@ def getPostBySlug(request, slug=None):
             new_comment.post = instance
             new_comment.user = request.user
             new_comment.save()
+            return HttpResponseRedirect(reverse('posts:detail_post', kwargs={'slug':slug}))
         else:
             comment_form = CommentForm()
     else:

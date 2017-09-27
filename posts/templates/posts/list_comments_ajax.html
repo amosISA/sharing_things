@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% if comments.count > 0 %}
 {% for comment in comments %}
 
     <div class="article_comments_comments">
@@ -45,3 +46,4 @@
     </div>
 
 {% endfor %}
+{% endif %}
