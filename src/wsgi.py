@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sharing_things.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sharing_things.src.settings")
 
 application = get_wsgi_application()
