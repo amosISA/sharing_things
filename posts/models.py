@@ -10,6 +10,7 @@ from tinymce.models import HTMLField
 
 from .utils import unique_slug_generator
 from .validators import validate_title
+from django.core.validators import MaxLengthValidator
 
 User = settings.AUTH_USER_MODEL
 
@@ -44,7 +45,7 @@ class PostManager(models.Manager):
 #--------------------------------------------------------------------#
 class Post(models.Model):
     user = models.ForeignKey(User)
-    title = models.CharField(max_length=120, validators=[validate_title])
+    title = models.CharField(max_length=255, validators=[validate_title])
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to=upload_location,
                               null=True,
