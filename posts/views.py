@@ -140,6 +140,7 @@ def getPostBySlug(request, slug=None):
         #  A comment was posted
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
+            #request.encoding = 'utf-8'
             # Create comment object but dont save it to database
             new_comment = comment_form.save(commit=False)
             # Assign the current post to the comment and to the user
@@ -262,6 +263,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('posts:index')
 
     def form_valid(self, form):
+        #self.request.encoding = 'utf-8'
         instance = form.save(commit=False)
         instance.user = self.request.user
         #instance.save() # por defecto el form_valid ya hace el save asi q no hace falta
