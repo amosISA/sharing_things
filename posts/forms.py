@@ -11,6 +11,13 @@ class PostForm(forms.ModelForm):
             "image"
         ]
 
+    # def clean_title(self):
+    #     title = self.cleaned_data.get('title')
+    #     if len(title) > 120:
+    #         raise forms.ValidationError("El titulo no puede contener mas de 120 caracteres.")
+    #     return title
+
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

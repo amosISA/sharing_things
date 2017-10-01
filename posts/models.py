@@ -45,8 +45,8 @@ class PostManager(models.Manager):
 #--------------------------------------------------------------------#
 class Post(models.Model):
     user = models.ForeignKey(User)
-    title = models.CharField(max_length=255, validators=[validate_title])
-    slug = models.SlugField(unique=True)
+    title = models.CharField(max_length=250, validators=[validate_title])
+    slug = models.SlugField(max_length=250, unique=True)
     image = models.ImageField(upload_to=upload_location,
                               null=True,
                               blank=True,
