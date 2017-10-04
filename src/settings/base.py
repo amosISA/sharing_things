@@ -80,22 +80,35 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'src.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-from .db_password import EMAILPW
+# from .db_password import EMAILPW
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'sharing_things',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': 3306,
+#         'OPTIONS': {
+#             'sql_mode': 'traditional'
+#         }
+#     }
+# }
+from .db_password import DBPASS, EMAILPW
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sharing_things',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': 3306,
-        'OPTIONS': {
-            'sql_mode': 'traditional'
-        }
+        'USER': 'amos',
+        'PASSWORD': DBPASS,
+        #'HOST': 'localhost',
+        #'PORT': 3306,
+        #'OPTIONS': {
+         #   'sql_mode': 'traditional',
+        #}
     }
 }
 
