@@ -1,4 +1,4 @@
-Welcome to SharingThings!
+Welcome to Agora!
 ===================
 
 Web created with Django to share ideas among registered users. They can post, follow other users, comment and like posts, update their profile and much more!
@@ -9,7 +9,7 @@ Web created with Django to share ideas among registered users. They can post, fo
 Things To Do
 -------------
 
-- Añadir respuestas a los comentarios, así como likes. 
-- Añadir ajax al hacer click con el botón follow.
-- Crear REST API para Django (flask).
-- Añadir internacionalización.
+- Add replies to comments as well as likes.
+- Add ajax by clicking the follow button.
+- Create REST API for Django (flask).
+- Add internationalization.
