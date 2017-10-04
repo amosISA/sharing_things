@@ -99,7 +99,6 @@ class Comment(models.Model):
     def __unicode__(self):
         return 'Comentado por {}'.format(self.user)
 
-
 # Function that do something before the model is saved => save()
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
     # Lo q slugify hace es si el titulo es: coche item 1

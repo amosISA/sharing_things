@@ -3,7 +3,7 @@
 {% for comment in comments %}
 
     <div class="article_comments_comments">
-        <a href="{% url "profiles:user_profile" username=comment.user.username %}">
+        <a href="{% url 'profiles:user_profile' username=comment.user.username %}">
             <div class="comment_comment_avatar">
                 <div class="comment_comment_avatar_image" style="{% if comment.user.profile.avatar %}background-image: url('{{ comment.user.profile.avatar.url }}');{% else %}background-image: url('{% static 'posts/img/favicon/fav.png' %}');{% endif %}">
                 </div>
@@ -15,7 +15,7 @@
             <div class="article_comments_comments_body_container">
                 <div class="article_comments_comments_body_info">
                     <div class="comment_name_user">
-                        <a href="{% url "profiles:user_profile" username=comment.user.username %}">{{ comment.user.get_full_name|title }}</a>
+                        <a href="{% url 'profiles:user_profile' username=comment.user.username %}">{{ comment.user.get_full_name|title }}</a>
                     </div>
                     <div class="comment_timestamp">{{ comment.created|timesince }}</div>
                 </div>
@@ -23,7 +23,7 @@
                 <div>
                     <div class="comment_comment_content">
                         <div>
-                            <p>{{ comment.contenido|linebreaks }}</p>
+                            <p>{{ comment.contenido|linebreaks|safe }}</p>
                         </div>
                     </div>
                 </div>

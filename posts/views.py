@@ -146,6 +146,7 @@ def getPostBySlug(request, slug=None):
             # Assign the current post to the comment and to the user
             new_comment.post = instance
             new_comment.user = request.user
+            new_comment.contenido = new_comment.contenido.encode('unicode_escape')
             new_comment.save()
             return HttpResponseRedirect(reverse('posts:detail_post', kwargs={'slug':slug}))
         else:
