@@ -21,4 +21,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "src.settings")
 os.environ.setdefault('LANG', 'en_US.UTF-8')
 os.environ.setdefault('LC_ALL', 'en_US.UTF-8')
 
+# activamos nuestro virtualenv
+activate_this = '/home/admin/sharing_things/bin/activate_this.py'
+execfile(activate_this, dict(__file__=activate_this))
+
 application = get_wsgi_application()
